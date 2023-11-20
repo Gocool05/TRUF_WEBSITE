@@ -5,14 +5,13 @@ Welcome to the Online Turf Booking App repository! This project allows users to 
 - [Demo](#demo)
 - [Features](#features)
 - [Installation](#installation)
-- [Usage](#usage)
 - [Technologies Used](#technologies-used)
 - [Screenshots](#screenshots)
 - [Contributing](#contributing)
 
 ## Demo
 
-Check out the live demo of the Online Turf Booking App: https://turfz-5834b.web.app/
+Check out the live demo of the Online Turf Booking App Soon which will be deployed.
 
 ## Features
 
@@ -25,20 +24,14 @@ Check out the live demo of the Online Turf Booking App: https://turfz-5834b.web.
 
 Follow these steps to set up the project on your local machine:
 
-1. Clone this repository: `https://github.com/Joel-K-James/Turfz.git`
+1. Clone this repository: `https://github.com/Gocool05/TURF_WEBSITE.git`
 2. Navigate to the project directory: `cd Turfz`
 3. Install dependencies: `npm install`
-
-## Usage
-
-1. Set up your Firebase project and update the Firebase configuration in `src/firebase.js`.
-2. Run the development server: `npm start`
-3. Open your web browser and go to `http://localhost:3000`
 
 ## Technologies Used
 
 - React.js - A JavaScript library for building user interfaces.
-- Firebase - A platform for building web and mobile applications.
+- Strapi - A headless CMS platform for building backends for web applications.
 
 ## Screenshots
 ## Front Page
