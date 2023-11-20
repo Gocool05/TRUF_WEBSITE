@@ -1,23 +1,33 @@
-import React from 'react'
-import ball from "../images/Football1.png"
-import { Link } from 'react-router-dom'
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { Box, Button, Text, Image, Flex } from '@chakra-ui/react';
 
 export const HomeBody = () => {
   return (
-    <div id='homeBody'>
-        <div id='ballImg'>
-           <img src={ball} alt="" />
-        </div>
-        <div id='ballingText'>
-            <p id='bodyheading'>FIND AND BOOK YOUR NEAREST{" "}
-            <span style={{ color: "green" }}>TURF</span> JUST A CLICK AWAY!</p>
-            <p id='bodyHeading2'>
-            WHEN YOU BOOK YOUR GROUND ONLINE WITH US, YOU GET TO PAY WITH CREDIT CARD, DEBIT CARD, NET BANKING OR WITH DIGITAL WALLET TO. WITH TURFZ YOU ENJOY THE PROCESS OF GROUND BOOKING AS MUCH AS YOU ENJOY THE GAME
-            </p>
-            <Link to={"/login"}>
-            <button id='loginBtn'>LOGIN/SIGNUP</button>
-            </Link>
-        </div>
-    </div>
-  )
-}
+    <Flex
+      direction={{ base: 'column', md: 'row' }}
+      align='center'
+      justify='center'
+      id='homeBody'
+      p={4}
+      
+    >
+      <Box id='ballImg' textAlign='center' flex='1'  mb={{ base: 10, md: 0 }}>
+        <Image src="https://res.cloudinary.com/dx78kzenz/image/upload/v1700478243/Football1_bgcmr3.png" alt='Football' maxWidth='100%' />
+      </Box>
+      <Box id='ballingText' textAlign='left' flex='1' gap={6}>
+        <Text id='bodyheading' fontSize={{base: "xs", md: "lg", lg: "2xl" }} color='blackAlpha.800'>
+          FIND AND BOOK YOUR NEAREST TURF, JUST A CLICK AWAY!
+        </Text>
+        <Text fontSize={{ base: "xs", md: "sm", lg: "xl" }} textAlign='left' color="black">
+        Welcome to our premier turf booking service, where your passion for sports meets the convenience of online reservations. We understand the importance of finding the perfect turf for your game, and we've streamlined the process to make it as effortless as possible.
+          </Text>
+        <Link to='/login'>
+        <Button id="loginSignupBtn" mb={4}>
+              LOGIN/SIGNUP
+            </Button>
+        </Link>
+      </Box>
+    </Flex>
+  );
+};

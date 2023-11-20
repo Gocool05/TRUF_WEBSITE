@@ -1,15 +1,7 @@
-import React, { useState } from "react";
-import turfbg from "../images/fbvid1.mp4";
-import logo from "../images/navlogo.png";
-
-
+import React from "react";
 import "../style/turf.css";
-import {BiSolidCricketBall,BiCricketBall,BiFootball,BiSolidEditLocation} from "react-icons/bi"
-// import {IoFitness} from "react-icons/io5"
-// import {IoIosBasketball} from "react-icons/io"
-// import {GiTennisRacket} from "react-icons/gi"
-// import {MdLocationOn} from "react-icons/md"
-import { Button, Icon, Popover } from "@chakra-ui/react";
+import {BiCricketBall,BiFootball} from "react-icons/bi";
+import { Button} from "@chakra-ui/react";
 import { useUserAuth } from "../context/Authcontext";
 import { PopoverProfile } from "./Popover";
 
@@ -29,14 +21,14 @@ export const TurfNav = (prop) => {
     <>
       <div id="turfnavbg">
       <video autoPlay muted loop id="bgVideo">
-      <source src={turfbg} type="video/mp4" />
+      <source src='https://res.cloudinary.com/dx78kzenz/video/upload/v1700478280/fbvid1_snspps.mp4' type="video/mp4" />
       Your browser does not support the video tag.
 </video>
       </div>
       <div id="turfNavContainer">
         <div id="topNavturf">
           <div id="turfNav">
-            <img src={logo} alt="" />
+            <img src='https://res.cloudinary.com/dx78kzenz/image/upload/v1700478254/navlogo_sfnmmj.png' alt="" />
           </div>
           <div id="navBtns">
             <PopoverProfile handleLogout={handleLogout} email={user.email}/>
@@ -49,9 +41,7 @@ export const TurfNav = (prop) => {
                 color: "Green",
                 fontSize: "100px",
               }} >Turf</span></p>
-          {/* <p id="turfCity">
-            Chennai <MdLocationOn fontWeight={"bold"} />
-          </p> */}
+          
         </div>
         <div id="botNavTurf">
         

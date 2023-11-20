@@ -18,6 +18,7 @@ export const PopoverProfile = (prop) => {
   const { name, email, handleLogout, image } = prop;
 
   const navigate = useNavigate();
+  const emailId = localStorage.getItem('emailId');
 
   return (
     <Popover>
@@ -30,7 +31,8 @@ export const PopoverProfile = (prop) => {
         <PopoverArrow />
         <PopoverCloseButton />
         <PopoverHeader fontWeight={"bold"} color="black">
-          Welcome {email}
+          
+          Welcome {emailId}
         </PopoverHeader>
         <PopoverBody display={"grid"} gap="20px">
           <Button

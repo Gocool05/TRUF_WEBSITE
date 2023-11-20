@@ -21,17 +21,23 @@ import { loadBundle } from "firebase/firestore";
 import { ref, set } from "firebase/database";
 import { database } from "../firebase-config/config";
 import { onValue } from "firebase/database";
+import axios from 'axios';
+import { loadStripe } from '@stripe/stripe-js';
+
+const stripePromise = loadStripe('your_publishable_key_here');
 
 const time = [
-  "5:00 AM",
-  "7:00 AM",
-  "9:00 AM",
-  "4:00 PM",
-  "6:00 PM",
-  "8:00 PM",
-  "10:00AM",
+  "A5:00 AM",
+  "B7:00 AM",
+  "C9:00 AM",
+  "D4:00 PM",
+  "E6:00 PM",
+  "F8:00 PM",
+  "G10:00AM",
 ];
 export const TimeSelectModal = (prop) => {
+  const { email } = prop;
+
   const { turf, id,setElement, setTime, setTurfName, turfName ,image} = prop;
   const { user } = useUserAuth();
 
@@ -52,31 +58,31 @@ export const TimeSelectModal = (prop) => {
   const [msg, setMsg] = useState(false);
   const [err, setErr] = useState(false);
   const [date,setDate] = useState("")
+  const [timeSlots, setTimeSlots] = useState('');
+  
 
-  const handleElement = () => {
-    // Make sure turfName is defined before accessing its properties
-    if (turfName && id && image) {
-      console.log('Setting element data:', turfName, id, image);
-      const elementData = { name: turfName, id, image};
-      setElement(elementData);
-      setTime(""); // You might want to initialize time here if needed
-    }
-  };
+  // const handleElement = () => {
+  //   // Make sure turfName is defined before accessing its properties
+  //   if (turfName && id && image) {
+  //     console.log('Setting element data:', turfName, id, image);
+  //     const elementData = { name: turfName, id, image};
+  //     setElement(elementData);
+  //     setTime(""); // You might want to initialize time here if needed
+  //   }
+  // };
 
   // const bookedTimeLs = localStorage.getItem("time", time);
   // console.log(bookedTime)
   const navigate = useNavigate();
   // add bookings to user account
-  function writeUserData(data) {
-    set(ref(database, "users/" + user.uid), {
-      data,
-    });
-  }
-
-// console.log(date)
-  // const getBookings = () => {
+  // function writeUserData(data) {
+  //   set(ref(database, "users/" + user.uid), {
+  //     data,
+  //   });
+  // }
+  // const Leaveref = ref(database, `users/`);
+  // useEffect(() => {
   //   let arr = [];
-  //   const Leaveref = ref(database, `users/`);
   //   onValue(Leaveref, (snapshot) => {
   //     const data = snapshot.val();
   //     const newLeave = Object.keys(data).map((key) => ({
@@ -84,76 +90,69 @@ export const TimeSelectModal = (prop) => {
   //       ...data[key],
   //     }));
   //     newLeave.map((ele) => {
-  //       return arr.push(ele.data.time);
+  //      return arr.push(ele.data);
   //     });
   //   });
+  //   // console.log(arr)
   //   setBookedTime(arr);
-  // };
-  const Leaveref = ref(database, `users/`);
-  useEffect(() => {
-    let arr = [];
-    onValue(Leaveref, (snapshot) => {
-      const data = snapshot.val();
-      const newLeave = Object.keys(data).map((key) => ({
-        id: key,
-        ...data[key],
-      }));
-      newLeave.map((ele) => {
-       return arr.push(ele.data);
-      });
-    });
-    // console.log(arr)
-    setBookedTime(arr);
-  },[]);
+  // },[]);
 
-  const addBookings = async (ele) => {
+  
+  // if (link) {
+  //   navigate("/payment");
+  // }
+  // useEffect(() => {
+  //   if (user && link) {
+  //     navigate("/payment");
+  //   }
+  // }, [user, link]);
+
+
+  const handleSubmit = async (e) => {
+    // e.preventDefault();
+    const storedId = localStorage.getItem('apiResponse');
+    // const parsedId = 0;
+    // if (storedId) {
+      const userId = parseInt(storedId, 10);
+    // }
     try {
-      const userAuth = await user;
+      // Check if there's an existing booking for the same time and date
+      const existingBooking = await axios.get('http://localhost:1337/api/bookings', {
+        params: {
+          timeSlots,
+          date,
+          userId
+        },
+      });
 
-      var bookingData = {
-        time: ele,
-        uid: userAuth.uid,
-        email: userAuth.email,
-        bookingDate : date
-      };
-      console.log('Checking existing bookings:', bookedtime);
-      if (bookedtime.find(
-        (e) => e.time === ele && 
-      e.bookingDate=== date 
-      && e.booking &&
-      e.booking.name===turfName
-      ) ) {
-        console.log('Slot already booked');
-        setlink(false)
-        setErr(true)
+      if (existingBooking.data.length > 0) {
+        setErr('A booking already exists for this time and date.');
+        // setSuccess(false);
       } else {
-        console.log('Booking slot:', ele);
-        setlink(true)
-        writeUserData(bookingData);
-        setMsg(true)
+        // If no conflicting booking, proceed to create the booking
+        const response = await axios.post('http://localhost:1337/api/bookings', {
+          timeSlots,
+          date,
+          userId
+        });
+
+        if (response.status === 200) {
+          // setSuccess(true);
+          setErr('');
+        }
       }
-    } 
-  
-  catch (err) {
-    console.error('Error adding bookings:', err);
+    } catch (err) {
+      setErr('Failed to create booking. Please try again.');
+      console.error(err);
     }
-  
   };
-  
-  if (link) {
-    navigate("/payment");
-  }
-  useEffect(() => {
-    if (user && link) {
-      navigate("/payment");
-    }
-  }, [user, link]);
+
   return (
     <>
       <Button
         colorScheme={"green"}
         onClick={() => {
-          handleElement();
+          // handleElement();
           onOpen();
         }}
       >
@@ -165,7 +164,7 @@ export const TimeSelectModal = (prop) => {
           <ModalHeader className="headerModal">Date & Time </ModalHeader>
           <  ModalCloseButton className="closebtn" />
           <ModalBody>
-            <Box>
+            {/* <Box>
              
               {msg ? (
                 <div className={msg ? "alertMsg" : "alertErr"}>
@@ -182,11 +181,18 @@ export const TimeSelectModal = (prop) => {
                   </Alert>
                 </div>
               )}
-            </Box>
+            </Box> */}
             <Text fontWeight={"bold"} fontSize="45px" color={"green"}>Booking Your Turf</Text>
             <Text fontWeight={"bold"} fontSize="25px">Select Date</Text>
             <br/>
-            <Input type={"date"} onChange={(e)=>setDate(e.target.value)}/>
+            <Input type={"date"} onChange={(e) => {
+                const selectedDate = e.target.value; // Get the selected date in DD-MM-YYYY format
+                const [month, day, year] = selectedDate.split('-'); // Split the date into day, month, and year
+                const formattedDate = `${year}-${month}-${day}`; // Rearrange the date to YYYY-MM-DD format
+                setDate(formattedDate); // Set the state with the formatted date
+            }}
+              required
+            />
             <br/>
             <br/>
             <Text fontWeight={"bold"} fontSize="25px">
@@ -200,10 +206,11 @@ export const TimeSelectModal = (prop) => {
                     className="time"
                     onClick={() => {
                       setTime(ele);
-                      addBookings(ele);
+                      handleSubmit(ele);
+                      navigate("/payment");
                     }}
                   >
-                    {ele}
+                    {ele.substring(1)}
                   </Button>
                 );
               })}

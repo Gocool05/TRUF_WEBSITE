@@ -4,24 +4,28 @@ import { Button, Input } from "@chakra-ui/react";
 import { Link ,useNavigate} from "react-router-dom";
 import { useUserAuth } from "../context/Authcontext";
 import { Alert } from "@chakra-ui/react";
+import axios from "axios";
 
 
 export const Signup = () => {
     const [email,setEmail] = useState("");
-    const [pass,setPass] = useState("")
+    const [password,setPassword] = useState("")
+    const [username, setUserName] = useState("")
     const [error,setError] = useState("")
     const {signup} = useUserAuth()
     const navigate = useNavigate()
-    const handlesignup = async() => {
-        setError("")
-        try{
-          await signup(email,pass)
-          alert("User Created Successfully")
-          navigate("/login")
-        }catch(err){
-          setError(err.message)
-        } 
+    const handlesignup = async () => {
+      try {
+        const response = await axios.post('http://localhost:1337/api/auth/local/register', {
+          username,
+          email,
+          password
+        });
       }
+      catch(err){
+        console.log("error in signup",err);
+      }
+    }
 
   return (
     <div id="loginContainer">
@@ -33,6 +37,15 @@ export const Signup = () => {
         {
             error && <Alert variant={"subtle"} status='error'>{error}</Alert>
         }
+        <div>
+          <p id="username">USERNAME</p>
+          <Input
+            type="text"
+            placeholder="USERNAME"
+            onChange={(e) => setUserName(e.target.value)}
+            border="2px solid black"
+          />
+        </div>
         <div>
           <p id="username">EMAIL</p>
           <Input
@@ -47,7 +60,7 @@ export const Signup = () => {
           <Input
             type="password"
             placeholder="PASSWORD"
-            onChange={(e) => setPass(e.target.value)}
+            onChange={(e) => setPassword(e.target.value)}
             border="2px solid black"
           />
         </div>

@@ -1,64 +1,71 @@
-#loginBg{
-    width: 80%;
-    margin: auto;
-    position: relative;
-    justify-content: center;
-    top:10em;
-}
-#loginBg img{
-    width: 100%;
-}
-#loginform{
-    border: 0px solid black;
-    width: 30%;
-    border-radius: 20px;
-    position: absolute;
-    top: 20em;
-    left: 35em;
-    padding: 60px;
-    background-color:rgb(255, 255, 255);
-    opacity:90%;
-    display: grid;
-    gap: 30px;
-    box-shadow: #183D3D 0px 7px 29px 0px;
-}
-#headingLogin{
-    font-size: 40px;
-    font-weight: Bold;
-    text-align: center;
-    color: #183D3D;
-}
-#username,#password{
-    font-weight: bold;
-    font-size: 15px;
-    color:#5C8374;
-}
-#loginFormBtn{
-    width: 50%;
-    margin: auto;
-    color: white;
-    background-color: #183D3D;
-    border-radius: 10px;
-}
-#loginwithBtn{
+#loginContainer {
     display: flex;
-    justify-content: center;
-    gap: 10px;
+    flex-direction: column;
     align-items: center;
-    border: 0px solid black;
-    width: 80%;
-    margin: auto;
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-    cursor: pointer;
-}
-#glogo{
-    width: 10%;
-}
-#glogo img{
+    justify-content: center;
+    min-height: 100vh;
+    position: relative;
+  }
+  
+  #loginBg {
+    flex: 1;
     width: 100%;
-}
-#gtext{
-   color: black;
-}
+    position: absolute;
+  }
+  
+  #loginBg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  #loginform {
+    background-color: white;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 400px;
+    position: relative;
+    z-index: 1;
+  }
+  
+  #headingLogin {
+    text-align: center;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  #username,
+  #password {
+    margin-bottom: 0.5rem;
+  }
+  
+  #loginFormBtn,
+  #loginwithBtn {
+    width: 100%;
+    margin-top: 1rem;
+  }
+  
+  #glogo {
+    margin-right: 0.5rem;
+    display: inline-block;
+  }
+  
+  #gtext {
+    display: inline-block;
+    vertical-align: middle;
+  }
+  
+  @media (min-width: 768px) {
+    #loginform {
+      width: 70%;
+    }
+  }
+  
+  @media (min-width: 992px) {
+    #loginform {
+      width: 50%;
+    }
+  }
+  
