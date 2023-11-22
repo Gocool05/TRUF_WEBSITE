@@ -18,6 +18,9 @@
     height: 100%;
     object-fit: cover;
   }
+  .searchImg{
+    width: 20px;
+  }
   
   #loginform {
     background-color: white;

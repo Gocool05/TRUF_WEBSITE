@@ -92,7 +92,7 @@ export const Login = () => {
           Login
         </Button>
         <Button id="loginwithBtn" onClick={signinWithgoogle} mt={2} width="100%">
-          <Box id="glogo" mr={2} display="inline-block">
+          <Box id="glogo" mr={2} display="inline-block" className='searchImg'>
             <img src='https://res.cloudinary.com/dx78kzenz/image/upload/v1700478258/search_r83kdn.png' alt="" />
           </Box>
           <Text id="gtext" display="inline-block">
