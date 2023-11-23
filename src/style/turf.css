@@ -5,15 +5,7 @@
 #turfnavbg img{
     width: 100%;
 }
-#turfNavContainer{
-    position: absolute;
-    display: grid;
-    gap: 150px;
-    top: 1em;
-    width: 90%;
-    border: 0PX SOLID black;
-    left: 5em;
-}
+
 #navBtns{
     border: 0px solid black;
     width: 25%;
@@ -23,8 +15,7 @@
 }
 #topNavturf{
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+  
 
 }
 #turfNav{
@@ -34,12 +25,12 @@
     width: 100%;
 
 }
-#botNavTurf{
+/* #botNavTurf{
     display: flex;
     justify-content:space-between;
     align-items: center;
     
-}
+} */
 #botNavText{
     color: white;
     font-size: 25px;
@@ -85,8 +76,7 @@
     padding-bottom: 20px;
 }
 #listingImg img{
-    width: 400px;
-    height: 400px;
+    height: 200px;
     object-fit: cover;
 }
 #turfName{
@@ -98,9 +88,9 @@
 }
 #headingTurf{
     font-weight: bold;
-    font-size: 25px;
+   
     text-transform: uppercase;
-    width: 80%;
+    
     margin: auto;
     color: white;
     margin-top: 50px;
