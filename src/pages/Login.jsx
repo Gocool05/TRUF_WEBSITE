@@ -33,7 +33,7 @@ export const Login = () => {
 
   const handlePost = async () => {
     try {
-      const response = await axios.post('http://localhost:1337/api/auth/local', {
+      const response = await axios.post('https://strapi.letstrydevandops.site/api/auth/local', {
         identifier,
         password,
       });

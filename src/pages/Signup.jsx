@@ -16,11 +16,12 @@ export const Signup = () => {
     const navigate = useNavigate()
     const handlesignup = async () => {
       try {
-        const response = await axios.post('http://localhost:1337/api/auth/local/register', {
+        const response = await axios.post('https://strapi.letstrydevandops.site/api/auth/local/register', {
           username,
           email,
           password
         });
+        navigate('/login');
       }
       catch(err){
         console.log("error in signup",err);
