@@ -40,7 +40,7 @@ Follow these steps to set up the project on your local machine:
 <img width="1265" alt="Turf home" src="https://github.com/Gocool05/TURF_WEBSITE/blob/main/public/Home2.png">
 
 ## Login
-<img width="1118" alt="Login Page" src="https://github.com/Gocool05/TURF_WEBSITE/blob/main/public/Login%20Page.png)">
+<img width="1118" alt="Login Page" src="https://github.com/Gocool05/TURF_WEBSITE/blob/main/public/Login%20Page.png">
 
 ## Interface1
 <img width="1261" alt="Turf Nav" src="https://github.com/Gocool05/TURF_WEBSITE/blob/main/public/TurfNav.png">
