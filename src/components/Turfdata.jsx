@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import turfData from "./data";
-import { TimeSelectModal } from "./TimeSelectModal";
 import { Loading } from "./Loading";
-import { Box, Text, Image, Flex, Container } from "@chakra-ui/react";
+import { Box, Text, Image, Flex, Container, Button } from "@chakra-ui/react";
+import TimeSelectModal from "./TimeSelectModal";
 
 export const Turfdata = () => {
   const [element, setElement] = useState({});
@@ -55,15 +55,23 @@ export const Turfdata = () => {
             >
               {turf.turfAddress}
             </Text>
-
-            <TimeSelectModal
+      <TimeSelectModal />
+            {/* <TimeSelectModal
+            turfId={turf.id}
+            turfName={turf.turfName}
+            turfImage={turf.image}
+            setTurfName={setTurfName}
+            setElement={setElement}
+            setTime={setTime}
+            /> */}
+            {/* <TimeSelectModal
               turfId={turf.id}
               turfName={turf.turfName}
               turfImage={turf.image}
               setTurfName={setTurfName}
               setElement={setElement}
               setTime={setTime}
-            />
+            /> */}
           </Box>
         ))}
       </Flex>

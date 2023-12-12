@@ -62,7 +62,7 @@ export const Login = () => {
       position="relative"
     >
       <Box id="loginBg" flex="1" width="100%" position="absolute">
-        <img src='https://res.cloudinary.com/dx78kzenz/image/upload/v1700478255/paymentBg_gmggbi.png' alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+        <img src='https://res.cloudinary.com/dx78kzenz/image/upload/v1702026989/login_bg_d781b7756a.png' alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
       </Box>
       <Box
         id="loginform"
@@ -94,7 +94,7 @@ export const Login = () => {
         </Button>
         <Button id="loginwithBtn" onClick={signinWithgoogle} mt={2} width="100%">
           <Box id="glogo" mr={2} display="inline-block" className='searchImg'>
-            <img src='https://res.cloudinary.com/dx78kzenz/image/upload/v1700478258/search_r83kdn.png' alt="" />
+            <img src='https://res.cloudinary.com/dx78kzenz/image/upload/v1702027041/google_logo_ff05da96f9.png' alt="" />
           </Box>
           <Text id="gtext" display="inline-block">
             Login with Google

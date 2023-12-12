@@ -13,7 +13,7 @@ export const HomeBody = () => {
       
     >
       <Box id='ballImg' textAlign='center' flex='1'  mb={{ base: 10, md: 0 }}>
-        <Image src="https://res.cloudinary.com/dx78kzenz/image/upload/v1700478243/Football1_bgcmr3.png" alt='Football' maxWidth='100%' />
+        <Image src="https://res.cloudinary.com/dx78kzenz/image/upload/v1702026706/Football1_bgcmr3_133d203472.png" alt='Football' maxWidth='100%' />
       </Box>
       <Box id='ballingText' textAlign='left' flex='1' gap={6}>
         <Text id='bodyheading' fontSize={{base: "xs", md: "lg", lg: "2xl" }} color='blackAlpha.800'>

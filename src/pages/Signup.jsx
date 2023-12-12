@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import loginBg from "../images/loginBg.png";
 import { Button, Input } from "@chakra-ui/react";
 import { Link ,useNavigate} from "react-router-dom";
 import { useUserAuth } from "../context/Authcontext";
@@ -31,7 +30,7 @@ export const Signup = () => {
   return (
     <div id="loginContainer">
       <div id="loginBg">
-        <img src={loginBg} alt="" />
+        <img src='https://res.cloudinary.com/dx78kzenz/image/upload/v1702027405/signup_bg_be30752dae.png' alt="" />
       </div>
       <div id="loginform">
         <h1 id="headingLogin">SIGNUP</h1>

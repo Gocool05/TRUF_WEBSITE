@@ -28,11 +28,11 @@ export const TurfNav = (prop) => {
       <Container maxW="full" p={0} overflow="hidden">
       <Flex direction="column" align="center" id="topNavturf" position="relative">
         <Box id="turfNav" position="absolute" top={0} left={0}>
-          <img src="https://res.cloudinary.com/dx78kzenz/image/upload/v1700478254/navlogo_sfnmmj.png" alt="" />
+          <img src="https://res.cloudinary.com/dx78kzenz/image/upload/v1702026704/logo_b49e2fa484.png" alt="" />
         </Box>
         <Box>
           <video autoPlay muted loop id="bgVideo" style={{ width: "100%" }}>
-            <source src="https://res.cloudinary.com/dx78kzenz/video/upload/v1700478280/fbvid1_snspps.mp4" type="video/mp4" />
+            <source src="https://res.cloudinary.com/dx78kzenz/video/upload/v1702027513/fbvid1_snspps_0316c73aa3.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
           <Flex

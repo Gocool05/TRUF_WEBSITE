@@ -1,5 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState,} from 'react';
+
 import {
+  Button,
   Modal,
   ModalOverlay,
   ModalContent,
@@ -7,220 +9,154 @@ import {
   ModalFooter,
   ModalBody,
   ModalCloseButton,
-  Button,
-  useDisclosure,
-  Text,
-  Alert,
-  AlertIcon,
-  Box,
-  Input
-} from "@chakra-ui/react";
-import { Link as RouterLink, useNavigate } from "react-router-dom";
-import { useUserAuth } from "../context/Authcontext";
-import { loadBundle } from "firebase/firestore";
-import { ref, set } from "firebase/database";
-import { database } from "../firebase-config/config";
-import { onValue } from "firebase/database";
-import axios from 'axios';
-import { loadStripe } from '@stripe/stripe-js';
+  FormControl,
+  FormLabel,
+  Select,
+  Input,
+  Stack,
+} from '@chakra-ui/react';
 
-const stripePromise = loadStripe('your_publishable_key_here');
-
-const time = [
-  "A5:00 AM",
-  "B7:00 AM",
-  "C9:00 AM",
-  "D4:00 PM",
-  "E6:00 PM",
-  "F8:00 PM",
-  "G10:00AM",
-];
-export const TimeSelectModal = (prop) => {
-  const { email } = prop;
-
-  const { turf, id,setElement, setTime, setTurfName, turfName ,image} = prop;
-  const { user } = useUserAuth();
-
-  const OverlayTwo = () => (
-    <ModalOverlay
-      bg="none"
-      backdropFilter="auto"
-      backdropInvert="80%"
-      backdropBlur="2px"
-    />
-  );
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const [overlay, setOverlay] = React.useState(<OverlayTwo />);
-  const [bookedtime, setBookedTime] = useState([]);
-  const [disable, setDisable] = useState(false);
-  const [link, setlink] = useState(false);
-  const [color,setColor] = useState(false)
-  const [msg, setMsg] = useState(false);
-  const [err, setErr] = useState(false);
-  const [date,setDate] = useState("")
-  const [timeSlots, setTimeSlots] = useState('');
+const TimeSelectModal = () => {
   
+  const [selectedDate, setSelectedDate] = useState(null);
+  const [selectedTime, setSelectedTime] = useState(null);
+  const [isButtonDisabled, setIsButtonDisabled] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
 
-  // const handleElement = () => {
-  //   // Make sure turfName is defined before accessing its properties
-  //   if (turfName && id && image) {
-  //     console.log('Setting element data:', turfName, id, image);
-  //     const elementData = { name: turfName, id, image};
-  //     setElement(elementData);
-  //     setTime(""); // You might want to initialize time here if needed
-  //   }
-  // };
+  // const timeOptions = generateTimeOptions(); // Function to generate time options
 
-  // const bookedTimeLs = localStorage.getItem("time", time);
-  // console.log(bookedTime)
-  const navigate = useNavigate();
-  // add bookings to user account
-  // function writeUserData(data) {
-  //   set(ref(database, "users/" + user.uid), {
-  //     data,
-  //   });
-  // }
-  // const Leaveref = ref(database, `users/`);
-  // useEffect(() => {
-  //   let arr = [];
-  //   onValue(Leaveref, (snapshot) => {
-  //     const data = snapshot.val();
-  //     const newLeave = Object.keys(data).map((key) => ({
-  //       id: key,
-  //       ...data[key],
-  //     }));
-  //     newLeave.map((ele) => {
-  //      return arr.push(ele.data);
-  //     });
-  //   });
-  //   // console.log(arr)
-  //   setBookedTime(arr);
-  // },[]);
+  const handleDateChange = (event) => {
+    setSelectedDate(event.target.value);
+    checkButtonStatus(event.target.value, selectedTime);
+  };
 
-  
-  // if (link) {
-  //   navigate("/payment");
-  // }
-  // useEffect(() => {
-  //   if (user && link) {
-  //     navigate("/payment");
-  //   }
-  // }, [user, link]);
+  const handleTimeChange = (time) => {
+    setSelectedTime(time);
+    checkButtonStatus(selectedDate, time);
+  };
 
 
-  const handleSubmit = async (e) => {
-    // e.preventDefault();
-    const storedId = localStorage.getItem('apiResponse');
-    // const parsedId = 0;
-    // if (storedId) {
-      const userId = parseInt(storedId, 10);
-    // }
+  const checkButtonStatus = (date, time) => {
+    setIsButtonDisabled(!date || !time);
+  };
+  const emailId = localStorage.getItem('emailId');
+  const userID = localStorage.getItem('apiResponse');
+  const handleBookNow = async () => {
     try {
-      // Check if there's an existing booking for the same time and date
-      const existingBooking = await axios.get('http://localhost:1337/api/bookings', {
-        params: {
-          timeSlots,
-          date,
-          userId
+      console.log(selectedDate);
+      console.log(selectedTime);
+      console.log(userID);
+
+      // Make a request to your Strapi backend to book the turf
+      const response = await fetch('https://strapi.letstrydevandops.site/api/bookings', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
         },
+        body: JSON.stringify({
+          data:{
+            users_permissions_user:userID,
+            date: selectedDate,
+            timeslots: selectedTime
+          }
+        }),
       });
 
-      if (existingBooking.data.length > 0) {
-        setErr('A booking already exists for this time and date.');
-        // setSuccess(false);
+      if (response.ok) {
+        // Booking successful, handle accordingly
+        alert('Booking successful!');
       } else {
-        // If no conflicting booking, proceed to create the booking
-        const response = await axios.post('http://localhost:1337/api/bookings', {
-          timeSlots,
-          date,
-          userId
-        });
-
-        if (response.status === 200) {
-          // setSuccess(true);
-          setErr('');
-        }
+        // Booking failed, handle accordingly
+        alert('Booking failed');
       }
-    } catch (err) {
-      setErr('Failed to create booking. Please try again.');
-      console.error(err);
+    } catch (error) {
+      alert('Error booking turf:', error);
+    } finally {
+      // Close the modal regardless of the booking result
+      handleClose();
     }
   };
 
+  const handleClose = () => {
+    setIsOpen(false);
+  };
+
+  const handleOpen = () => {
+    setIsOpen(true);
+  };
+
+  const time = [
+    "A5:00AM",
+    "B6:00AM",
+    "C7:00AM",
+    "D8:00PM",
+    "E9:00PM",
+    "F10:00PM",
+    "G11:00AM",
+  ];
+ 
+  // function generateTimeOptions() {
+  //   const startHour = 10; // Starting hour
+  //   const endHour = 22;   // Ending hour
+  //   const timeOptions = [];
+
+  //   for (let hour = startHour; hour <= endHour; hour++) {
+  //     const label = `${hour}:00 - ${hour + 1}:00`;
+  //     const value = `${hour}:00`;
+  //     timeOptions.push({ label, value });
+  //   }
+
+  //   return timeOptions;
+  // }
+
   return (
     <>
-      <Button
-        colorScheme={"green"}
-        onClick={() => {
-          // handleElement();
-          onOpen();
-        }}
-      >
+      <Button colorScheme="blue" onClick={handleOpen}>
         Book Now
       </Button>
-      <Modal isCentered isOpen={isOpen} onClose={onClose}>
-        {overlay}
+
+      <Modal isOpen={isOpen} onClose={handleClose}>
+        <ModalOverlay />
         <ModalContent>
-          <ModalHeader className="headerModal">Date & Time </ModalHeader>
-          <  ModalCloseButton className="closebtn" />
+          <ModalHeader>Book Turf</ModalHeader>
+          <ModalCloseButton />
           <ModalBody>
-            {/* <Box>
-             
-              {msg ? (
-                <div className={msg ? "alertMsg" : "alertErr"}>
-                  <Alert status="success">
-                    <AlertIcon />
-                    Booked successfully
-                  </Alert>
-                </div>
-              ) : (
-                <div className={err ? "errmsg" : "errFalse"}>
-                  <Alert status="error">
-                    <AlertIcon />
-                     This Slot is already Booked
-                  </Alert>
-                </div>
-              )}
-            </Box> */}
-            <Text fontWeight={"bold"} fontSize="45px" color={"green"}>Booking Your Turf</Text>
-            <Text fontWeight={"bold"} fontSize="25px">Select Date</Text>
-            <br/>
-            <Input type={"date"} onChange={(e) => {
-                const selectedDate = e.target.value; // Get the selected date in DD-MM-YYYY format
-                const [month, day, year] = selectedDate.split('-'); // Split the date into day, month, and year
-                const formattedDate = `${year}-${month}-${day}`; // Rearrange the date to YYYY-MM-DD format
-                setDate(formattedDate); // Set the state with the formatted date
-            }}
-              required
-            />
-            <br/>
-            <br/>
-            <Text fontWeight={"bold"} fontSize="25px">
-              Select Time
-            </Text>
-            <br/>
-            <div id="timeButtons">
-              {time.map((ele) => {
-                return (
-                  <Button
-                    className="time"
-                    onClick={() => {
-                      setTime(ele);
-                      handleSubmit(ele);
-                      navigate("/payment");
-                    }}
-                  >
-                    {ele.substring(1)}
-                  </Button>
-                );
-              })}
-            </div>
+            <Stack spacing={4}>
+              
+              <FormControl>
+                <FormLabel>Date</FormLabel>
+                <input type="date" onChange={handleDateChange} />
+              </FormControl>
+
+              <FormControl>
+                <FormLabel>Select time</FormLabel>
+                <div id="timeButtons">
+  {time.map((ele) => {
+    const label = ele[1];
+    const timeWithoutLabel = ele.substring(1);
+
+    return (
+      <Button
+        className="time"
+        onClick={() => handleTimeChange(ele)}
+      >
+        {timeWithoutLabel}
+      </Button>
+    );
+  })}
+</div>
+              </FormControl>
+            </Stack>
           </ModalBody>
+
           <ModalFooter>
-            <Button onClick={onClose}>Close</Button>
+            <Button colorScheme="blue" onClick={handleBookNow} disabled={isButtonDisabled}>
+              Book Now
+            </Button>
           </ModalFooter>
         </ModalContent>
       </Modal>
     </>
   );
 };
+export default TimeSelectModal

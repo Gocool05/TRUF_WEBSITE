@@ -12,7 +12,6 @@ export const TurfzListing = () => {
   return (
     <div id="mainContainer">
       <TurfNav setTurf={setTurf} />
-      {/* <MapContainer/> */}
       <Turfdata turf={turf}/>
       <Footer />
     </div>
