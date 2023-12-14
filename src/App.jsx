@@ -9,9 +9,9 @@ const App = ()=> {
   const cld = new Cloudinary({cloud: {cloudName: 'dx78kzenz'}});
   return (
     <div className="App">
-       {/* <AllRoutes/> */}
+       <AllRoutes/>
        {/* <PaymentComponent/> */}
-       <Payment/>
+       {/* <Payment/> */}
     </div>
   );
 }

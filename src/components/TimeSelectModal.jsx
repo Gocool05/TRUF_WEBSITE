@@ -150,9 +150,10 @@ const TimeSelectModal = () => {
           </ModalBody>
 
           <ModalFooter>
-            <Button colorScheme="blue" onClick={handleBookNow} disabled={isButtonDisabled}>
-              Book Now
+            <Button colorScheme="blue" className="SS_ProductCheckout" data-id="9" data-email="ajay@gmail.com" data-url="https://strapi.letstrydevandops.site" onClick={handleBookNow} disabled={isButtonDisabled}>
+              Pay Now
             </Button>
+
           </ModalFooter>
         </ModalContent>
       </Modal>
