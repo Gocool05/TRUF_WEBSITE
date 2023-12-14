@@ -1,7 +1,6 @@
 import { AllRoutes } from "./routes/AllRoutes";
 import {Cloudinary} from "@cloudinary/url-gen";
-import { Payment } from "./pages/Payment";
-import PaymentComponent from "./pages/Pay";
+
 
 
 
@@ -10,8 +9,7 @@ const App = ()=> {
   return (
     <div className="App">
        <AllRoutes/>
-       {/* <PaymentComponent/> */}
-       {/* <Payment/> */}
+    
     </div>
   );
 }
