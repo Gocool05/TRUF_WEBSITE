@@ -1,4 +1,4 @@
-Welcome to the Online Turf Booking App repository! This project allows users to book sports turfs online. It's built using React.js for the frontend and Firebase for the backend. With this project, you can learn how to create a dynamic web application for managing turf bookings.
+Welcome to the Online Turf Booking App repository! This project allows users to book sports turfs online. It's built using React.js for the frontend and Starpi for the backend. With this project, you can learn how to create a dynamic web application for managing turf bookings.
 
 ## Table of Contents
 
@@ -11,7 +11,7 @@ Welcome to the Online Turf Booking App repository! This project allows users to 
 
 ## Demo
 
-Check out the live demo of the Online Turf Booking App Soon which will be deployed.
+Check out the live demo of the Online Turf Booking App https://turf-booking-blond.vercel.app/.
 
 ## Features
 
@@ -34,20 +34,23 @@ Follow these steps to set up the project on your local machine:
 - Strapi - A headless CMS platform for building backends for web applications.
 
 ## Screenshots
-## Front Page
-<img width="1265" alt="Screenshot 2023-08-30 221735" src="https://github.com/Joel-K-James/Turfz/assets/85893912/973b227a-e6bd-47f3-b2f9-12098905c05c">
+## Front Page 1
+<img width="1265" alt="Turf home" src="https://github.com/Gocool05/TURF_WEBSITE/blob/main/public/Home1.png">
+## Front Page 2
+<img width="1265" alt="Turf home" src="https://github.com/Gocool05/TURF_WEBSITE/blob/main/public/Home2.png">
 
 ## Login
-<img width="1118" alt="Screenshot 2023-08-30 221759" src="https://github.com/Joel-K-James/Turfz/assets/85893912/d4a83865-d5b1-4040-adb8-b2c7f6515dab">
+<img width="1118" alt="Login Page" src="https://github.com/Gocool05/TURF_WEBSITE/blob/main/public/Login%20Page.png">
 
-## Interface
-<img width="1261" alt="Screenshot 2023-08-30 221825" src="https://github.com/Joel-K-James/Turfz/assets/85893912/5ecc9d6e-2e99-4ce5-a4a1-7c1648970121">
+## Interface1
+<img width="1261" alt="Turf Nav" src="https://github.com/Gocool05/TURF_WEBSITE/blob/main/public/TurfNav.png">
+
+## Interface2
+<img width="1261" alt="Turf Data" src="https://github.com/Gocool05/TURF_WEBSITE/blob/main/public/TurfData.png">
 
 ## Booking
-<img width="1265" alt="Screenshot 2023-08-30 221918" src="https://github.com/Joel-K-James/Turfz/assets/85893912/93725dea-28d8-4fd4-aea6-06c74a86d502">
+<img width="1265" alt="Booking" src="https://github.com/Gocool05/TURF_WEBSITE/blob/main/public/Booking.png">
 
-## Confirmation received
-<img width="1278" alt="Screenshot 2023-08-30 221940" src="https://github.com/Joel-K-James/Turfz/assets/85893912/b61b59ec-e348-489b-aa92-d062cc386db4">
 
 ## Contributing
 
