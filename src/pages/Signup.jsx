@@ -8,17 +8,22 @@ import axios from "axios";
 
 export const Signup = () => {
     const [email,setEmail] = useState("");
+    const [mobile,setMobile] = useState("");
+
     const [password,setPassword] = useState("")
     const [username, setUserName] = useState("")
     const [error,setError] = useState("")
     const {signup} = useUserAuth()
     const navigate = useNavigate()
+    
     const handlesignup = async () => {
+      
       try {
         const response = await axios.post('https://strapi.letstrydevandops.site/api/auth/local/register', {
           username,
           email,
-          password
+          password,
+          mobile
         });
         navigate('/login');
       }
@@ -43,6 +48,15 @@ export const Signup = () => {
             type="text"
             placeholder="USERNAME"
             onChange={(e) => setUserName(e.target.value)}
+            border="2px solid black"
+          />
+        </div>
+        <div>
+          <p id="username">Mobile No</p>
+          <Input
+            type="phone"
+            placeholder="Mobile No"
+            onChange={(e) => setMobile(e.target.value)}
             border="2px solid black"
           />
         </div>
