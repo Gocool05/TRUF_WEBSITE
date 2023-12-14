@@ -1,13 +1,17 @@
 import { AllRoutes } from "./routes/AllRoutes";
 import {Cloudinary} from "@cloudinary/url-gen";
-import Pay from "./components/Pay";
+import { Payment } from "./pages/Payment";
+import PaymentComponent from "./pages/Pay";
 
-function App() {
+
+
+const App = ()=> {
   const cld = new Cloudinary({cloud: {cloudName: 'dx78kzenz'}});
   return (
     <div className="App">
        {/* <AllRoutes/> */}
-       <Pay/>
+       {/* <PaymentComponent/> */}
+       <Payment/>
     </div>
   );
 }
