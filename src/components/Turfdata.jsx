@@ -56,22 +56,7 @@ export const Turfdata = () => {
               {turf.turfAddress}
             </Text>
       <TimeSelectModal />
-            {/* <TimeSelectModal
-            turfId={turf.id}
-            turfName={turf.turfName}
-            turfImage={turf.image}
-            setTurfName={setTurfName}
-            setElement={setElement}
-            setTime={setTime}
-            /> */}
-            {/* <TimeSelectModal
-              turfId={turf.id}
-              turfName={turf.turfName}
-              turfImage={turf.image}
-              setTurfName={setTurfName}
-              setElement={setElement}
-              setTime={setTime}
-            /> */}
+          
           </Box>
         ))}
       </Flex>

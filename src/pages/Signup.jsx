@@ -55,7 +55,7 @@ export const Signup = () => {
           <p id="username">Mobile No</p>
           <Input
             type="phone"
-            placeholder="Mobile No"
+            placeholder="Mobile"
             onChange={(e) => setMobile(e.target.value)}
             border="2px solid black"
           />

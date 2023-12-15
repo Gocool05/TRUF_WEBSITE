@@ -26,7 +26,6 @@ export const Login = () => {
   const signinWithgoogle = async () => {
     try {
       await googleSignin();
-      navigate('/turf');
     } catch (err) {
       console.log(err);
     }
@@ -39,13 +38,13 @@ export const Login = () => {
         password,
       });
       console.log(response.data);
-      navigate('/turf');
-
+      
       const responseData = response.data.user.id;
       const emailId = response.data.user.email;
       localStorage.setItem('emailId', emailId.toString());
       console.log(responseData);
       localStorage.setItem('apiResponse', responseData.toString());
+      navigate('/turf');
     } catch (error) {
       setError('Error posting data');
     }

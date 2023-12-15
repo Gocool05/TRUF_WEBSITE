@@ -1,4 +1,4 @@
-import React, { useState,} from 'react';
+import React, { useState,useEffect,useRef} from 'react';
 
 import {
   Button,
@@ -18,13 +18,15 @@ import {
 
 const TimeSelectModal = () => {
   
+  const modalFooterRef = useRef(null);
+  const scriptRef = useRef(null);
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedTime, setSelectedTime] = useState(null);
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   const [isOpen, setIsOpen] = useState(false);
 
-  // const timeOptions = generateTimeOptions(); // Function to generate time options
 
+ 
   const handleDateChange = (event) => {
     setSelectedDate(event.target.value);
     checkButtonStatus(event.target.value, selectedTime);
@@ -94,20 +96,28 @@ const TimeSelectModal = () => {
     "F10:00PM",
     "G11:00AM",
   ];
- 
-  // function generateTimeOptions() {
-  //   const startHour = 10; // Starting hour
-  //   const endHour = 22;   // Ending hour
-  //   const timeOptions = [];
 
-  //   for (let hour = startHour; hour <= endHour; hour++) {
-  //     const label = `${hour}:00 - ${hour + 1}:00`;
-  //     const value = `${hour}:00`;
-  //     timeOptions.push({ label, value });
-  //   }
+  useEffect(() => {
+    console.log('Adding Razorpay script...');
+    const script = document.createElement('script');
+    script.src = 'https://checkout.razorpay.com/v1/payment-button.js';
+    script.async = true;
+    script.id = 'razorpay-script'; // Set a unique ID for the script element
+    script.setAttribute('data-payment_button_id', 'pl_NCWL6QWI6qa5ZC');
 
-  //   return timeOptions;
-  // }
+    const existingScript = document.getElementById('razorpay-script');
+
+    if (!existingScript && modalFooterRef.current) {
+      modalFooterRef.current.appendChild(script);
+    }
+
+    return () => {
+      console.log('Removing Razorpay script...');
+      if (existingScript && modalFooterRef.current) {
+        modalFooterRef.current.removeChild(existingScript);
+      }
+    };
+  }, []); 
 
   return (
     <>
@@ -123,12 +133,12 @@ const TimeSelectModal = () => {
           <ModalBody>
             <Stack spacing={4}>
               
-              <FormControl>
+              <FormControl id="booking-form">
                 <FormLabel>Date</FormLabel>
                 <input type="date" onChange={handleDateChange} />
               </FormControl>
 
-              <FormControl>
+              <FormControl id="booking-form">
                 <FormLabel>Select time</FormLabel>
                 <div id="timeButtons">
   {time.map((ele) => {
@@ -148,13 +158,8 @@ const TimeSelectModal = () => {
               </FormControl>
             </Stack>
           </ModalBody>
-
-          <ModalFooter>
-            <Button colorScheme="blue" className="SS_ProductCheckout" data-id="9" data-email="ajay@gmail.com" data-url="https://strapi.letstrydevandops.site" onClick={handleBookNow} disabled={isButtonDisabled}>
-              Pay Now
-            </Button>
-
-          </ModalFooter>
+          <ModalFooter ref={modalFooterRef}>
+            </ModalFooter>
         </ModalContent>
       </Modal>
     </>

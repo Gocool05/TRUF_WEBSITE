@@ -13,15 +13,15 @@ import {
 
 export const TurfNav = (prop) => { 
     const {setTurf} = prop
-    const { user, logout } = useUserAuth();
+    // const {  logout } = useUserAuth();
 
-    const handleLogout = async () => {
-      try {
-        await logout();
-      } catch (err) {
-        console.log(err.message);
-      }
-    };
+    // const handleLogout = async () => {
+    //   try {
+    //     await logout();
+    //   } catch (err) {
+    //     console.log(err.message);
+    //   }
+    // };
    
   return (
     <>
