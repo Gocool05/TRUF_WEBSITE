@@ -1,28 +1,30 @@
-
 // const express = require('express');
-// const stripe = require('stripe')('sk_test_51OM6qxSFP1cbsZZk1mJzXKczO8Efj4wR6xmTdserl68nMOaNIas3ZBOondZf3pTQqrMyq0TjaCQ6LzPTd6qtMYa600d1CYWv9o');
+// const Razorpay = require('razorpay');
 
 // const app = express();
-// app.use(express.json());
+// const port = 3001;
 
-// app.post('/api/payment', async (req, res) => {
+// const razorpay = new Razorpay({
+//   key_id: 'YOUR_RAZORPAY_KEY_ID',
+//   key_secret: 'YOUR_RAZORPAY_KEY_SECRET',
+// });
+
+// app.post('/create-order', async (req, res) => {
+//   const options = {
+//     amount: 1000, // Example amount in paise (1000 paise = Rs. 10)
+//     currency: 'INR',
+//     receipt: 'order_receipt_123',
+//   };
+
 //   try {
-//     const paymentIntent = await stripe.paymentIntents.create({
-//       payment_method: req.body.payment_method_id,
-//       amount: 1000, // amount in cents
-//       currency: 'usd',
-//       confirmation_method: 'manual',
-//       confirm: true,
-//     });
-
-//     res.json({ clientSecret: paymentIntent.client_secret });
+//     const order = await razorpay.orders.create(options);
+//     res.json({ order_id: order.id });
 //   } catch (error) {
-//     console.error(error);
-//     res.status(500).json({ error: 'Internal Server Error' });
+//     console.error('Error creating order:', error);
+//     res.status(500).json({ error: 'Unable to create order' });
 //   }
 // });
 
-// const PORT = process.env.PORT || 3001;
-// app.listen(PORT, () => {
-//   console.log(`Server is running on port ${PORT}`);
+// app.listen(port, () => {
+//   console.log(`Server is running on port ${port}`);
 // });
