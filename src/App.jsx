@@ -3,6 +3,7 @@ import {Cloudinary} from "@cloudinary/url-gen";
 import Cookies from 'js-cookie';
 import Pay from "./pages/Pay";
 import Razor from "./components/Razor";
+import Stripe from "./components/Stripe";
 
 
 
@@ -12,8 +13,7 @@ const App = ()=> {
   return (
     <div className="App">
        <AllRoutes/>
-       {/* <Razor/> */}
-    {/* <Pay/> */}
+       {/* <Stripe/> */}
     </div>
   );
 }
