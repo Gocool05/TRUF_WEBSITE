@@ -23,8 +23,13 @@ export const TurfNav = (prop) => {
     <>
       <Container maxW="full" p={0} overflow="hidden">
       <Flex direction="column" align="center" id="topNavturf" position="relative">
-        <Box id="turfNav" position="absolute" top={0} left={0}>
-          <img src="https://res.cloudinary.com/dx78kzenz/image/upload/v1702026704/logo_b49e2fa484.png" alt="" />
+        <Box id="turfNav" position="absolute" top={0} left={0} 
+        p={4}
+        zIndex={1}  // Use a specific zIndex value
+        width='50%' // Use "auto" to maintain the image's intrinsic size
+        height="auto"
+        >
+          <img src="https://res.cloudinary.com/dx78kzenz/image/upload/v1702903503/turfzlogo_aenw8e.png" alt="" />
         </Box>
         <Box>
           <video autoPlay muted loop id="bgVideo" style={{ width: "100%" }}>
@@ -42,9 +47,9 @@ export const TurfNav = (prop) => {
             width="100%"
           >
             <Text fontSize={{ base: "xl", md: "3xl", lg: "6xl" }} textAlign="center" fontWeight={"bold"} color="white" mb={2}>
-              YOUR BEST   {" "}
+            WANNA PLAY BALL ?{" "}
               <Text  fontWeight="bold" color="green" fontSize={{ base: "xl", md: "3xl", lg: "6xl" }}>
-                TURF FOR TIMEPASS
+              BOOK YOUR `TURF` NOW
               </Text>
             </Text>
           </Flex>

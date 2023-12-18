@@ -12,10 +12,10 @@ export const HomeNav = () => {
       left={0}
       p={4}
       zIndex={1}  // Use a specific zIndex value
-      width="auto"  // Use "auto" to maintain the image's intrinsic size
-      height="100px"  // Set a fixed height for the logo
+      width='50%' // Use "auto" to maintain the image's intrinsic size
+      height="auto"  // Set a fixed height for the logo
     >
-      <img src='https://res.cloudinary.com/dx78kzenz/image/upload/v1702026704/logo_b49e2fa484.png' alt="navlogo" style={{ maxWidth: "100%", height: "100%" }} />
+      <img src='https://res.cloudinary.com/dx78kzenz/image/upload/v1702903503/turfzlogo_aenw8e.png' alt="navlogo" style={{ maxWidth: "100%", height: "100%" }} />
     </Box>
       <Box id="Home" position="relative" overflow="hidden">
         <video autoPlay muted loop id="bgVideo" style={{ width: "100%" }}>
