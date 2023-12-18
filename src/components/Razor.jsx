@@ -12,7 +12,7 @@ const RazorpayComponent = ({ isOpen, onClose }) => {
       script.src = 'https://checkout.razorpay.com/v1/payment-button.js';
       script.async = true;
       script.id = 'razorpay-script';
-      script.setAttribute('data-payment_button_id', 'pl_NCWL6QWI6qa5ZC');
+      script.setAttribute('data-payment_button_id', 'pl_N3TjLpP34wEz2s');
 
       script.onload = () => {
         setTimeout(initializeRazorpay, 100);
@@ -33,6 +33,7 @@ const RazorpayComponent = ({ isOpen, onClose }) => {
     const initializeRazorpay = () => {
       console.log('Initializing Razorpay...');
       // Your existing initialization code
+      
     };
 
     loadRazorpayScript();

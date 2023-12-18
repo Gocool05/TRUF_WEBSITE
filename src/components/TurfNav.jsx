@@ -1,9 +1,5 @@
 import React from "react";
 import "../style/turf.css";
-import {BiCricketBall,BiFootball} from "react-icons/bi";
-import { Button} from "@chakra-ui/react";
-import { useUserAuth } from "../context/Authcontext";
-import { PopoverProfile } from "./Popover";
 import {
   Container,
   Flex,
@@ -46,34 +42,10 @@ export const TurfNav = (prop) => {
             width="100%"
           >
             <Text fontSize={{ base: "xl", md: "3xl", lg: "6xl" }} textAlign="center" fontWeight={"bold"} color="white" mb={2}>
-              YOU CAN CHOOSE{" "}
-              <Text as="span" fontWeight="bold" color="green" fontSize={{ base: "xl", md: "3xl", lg: "6xl" }}>
-                TURF
+              YOUR BEST   {" "}
+              <Text  fontWeight="bold" color="green" fontSize={{ base: "xl", md: "3xl", lg: "6xl" }}>
+                TURF FOR TIMEPASS
               </Text>
-              <br />
-              <Button
-                variant={"ghost"}
-                color="green"
-                fontSize={{ base: "xl", md: "3xl", lg: "5xl" }}
-                fontWeight="bold"
-                rightIcon={<BiCricketBall color="white" />}
-                onClick={() => setTurf("cricket")}
-                colorScheme={"white"}
-              >
-                CRICKET
-              </Button>{" "}
-              or{" "}
-              <Button
-                variant={"ghost"}
-                color="green"
-                fontSize={{ base: "xl", md: "3xl", lg: "5xl" }}
-                fontWeight="bold"
-                rightIcon={<BiFootball color="white" />}
-                onClick={() => setTurf("football")}
-                colorScheme={"white"}
-              >
-                FOOTBALL
-              </Button>
             </Text>
           </Flex>
         </Box>

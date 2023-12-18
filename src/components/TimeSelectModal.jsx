@@ -37,6 +37,9 @@ const TimeSelectModal = () => {
 
   const time = ["A5:00AM", "B6:00AM", "C7:00AM", "D8:00PM", "E9:00PM", "F10:00PM", "G11:00AM"];
 
+  // Check if both date and time are selected
+  const isPayNowEnabled = selectedDate && selectedTime;
+
   return (
     <>
       <Button colorScheme="blue" onClick={handleOpen}>
@@ -72,8 +75,13 @@ const TimeSelectModal = () => {
             <Button colorScheme="blue" mr={3} onClick={handleClose}>
               Close
             </Button>
+            
             {/* Conditionally render RazorpayComponent */}
-            {isOpen && <RazorpayComponent isOpen={isOpen} onClose={handleClose} />}
+            <Button colorScheme="green" isDisabled={!isPayNowEnabled}>
+              <a href="https://rzp.io/l/yAMwIw9Z" target="_blank" rel="noopener noreferrer">
+                Pay Now
+              </a>
+            </Button>
           </ModalFooter>
         </ModalContent>
       </Modal>
