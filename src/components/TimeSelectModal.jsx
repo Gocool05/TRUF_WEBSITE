@@ -54,7 +54,17 @@ const TimeSelectModal = () => {
     setIsOpen(true);
   };
 
-  const time = ["A5:00AM", "B6:00AM", "C7:00AM", "D8:00PM", "E9:00PM", "F10:00PM", "G11:00AM"];
+  const time = [
+    "A09:00AM",
+    "B10:00AM",
+    "C11:00AM",
+    "D12:00PM",
+    "E01:00PM",
+    "F02:00PM",
+    "G03:00PM",
+    "H04:00PM",
+    "I05:00PM"
+  ];
 
   
 
@@ -187,22 +197,23 @@ const TimeSelectModal = () => {
       <Modal isOpen={isOpen} onClose={handleClose}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Book Turf</ModalHeader>
+          <ModalHeader  fontSize={32} backgroundColor='#092635' color='white' >BOOK TURF</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
             <Stack spacing={4}>
               <FormControl id="booking-form">
-                <FormLabel>Date</FormLabel>
-                <input type="date" onChange={handleDateChange} />
+                <FormLabel fontSize={20} >Date:-</FormLabel>
+                <input style={{width:'100%', border:'3px groove #C3E2C2', borderRadius:'10px' ,padding:'10px'}} type="date" onChange={handleDateChange} />
               </FormControl>
 
               <FormControl id="booking-form">
-                <FormLabel>Select time</FormLabel>
+                <FormLabel fontSize={20}>Select time:-</FormLabel>
                 <div id="timeButtons">
                   {time.map((ele) => (
                     <Button
+
                       key={ele}
-                     style={{ backgroundColor: ele === selectedTime ? "green" : "white", color: ele === selectedTime ? "white" : "black" }}
+                     style={{ backgroundColor: ele === selectedTime ? "green" : "white", color: ele === selectedTime ? "white" : "black",border:'3px inset #C3E2C2' }}
                       className="timebutton"
                        onClick={() => {setSelectedTime(ele);}}
                     >
@@ -215,7 +226,7 @@ const TimeSelectModal = () => {
           </ModalBody>
 
           <ModalFooter>
-            <Button colorScheme="blue" mr={3} onClick={handleClose}>
+            <Button  mr={3} onClick={handleClose}>
               Close
             </Button>
             {/* Conditionally render RazorpayComponent */}
