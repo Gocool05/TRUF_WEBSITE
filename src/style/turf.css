@@ -19,7 +19,6 @@
 
 }
 
-
 /* #botNavTurf{
     display: flex;
     justify-content:space-between;
@@ -90,6 +89,7 @@
     color: white;
     margin-top: 50px;
 }
+
 
 #timeButtons{
     display: grid;

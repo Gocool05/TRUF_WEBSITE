@@ -6,20 +6,27 @@ import zIndex from "@mui/material/styles/zIndex";
 export const HomeNav = () => {
   return (
     <Container maxW="full" p={0} position="relative">
-        <Box
-      position="absolute"
-      top={0}
-      left={0}
-      p={4}
-      zIndex={1}  // Use a specific zIndex value
-      width='50%' // Use "auto" to maintain the image's intrinsic size
-      height="auto"  // Set a fixed height for the logo
-    >
-      <img src='https://res.cloudinary.com/dx78kzenz/image/upload/v1702903503/turfzlogo_aenw8e.png' alt="navlogo" style={{ maxWidth: "100%", height: "100%" }} />
-    </Box>
+      <Box
+        position="absolute"
+        top={0}
+        left={0}
+        p={4}
+        zIndex={1} // Use a specific zIndex value
+        width="50%" // Use "auto" to maintain the image's intrinsic size
+        height="auto" // Set a fixed height for the logo
+      >
+        <img
+          src="https://res.cloudinary.com/dx78kzenz/image/upload/v1702903503/turfzlogo_aenw8e.png"
+          alt="navlogo"
+          style={{ maxWidth: "100%", height: "100%" }}
+        />
+      </Box>
       <Box id="Home" position="relative" overflow="hidden">
         <video autoPlay muted loop id="bgVideo" style={{ width: "100%" }}>
-          <source src="https://res.cloudinary.com/dx78kzenz/video/upload/v1702026721/nav_video_0ca4df27a0.mp4" type="video/mp4" />
+          <source
+            src="https://res.cloudinary.com/dx78kzenz/video/upload/v1702026721/nav_video_0ca4df27a0.mp4"
+            type="video/mp4"
+          />
           Your browser does not support the video tag.
         </video>
         <Flex

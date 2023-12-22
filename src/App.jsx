@@ -13,6 +13,8 @@ const App = ()=> {
   return (
     <div className="App">
        <AllRoutes/>
+       {/* <Razor/> */}
+
        {/* <Stripe/> */}
     </div>
   );

@@ -1,53 +1,40 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useState,useEffect } from "react";
 
-const RazorpayComponent = ({ isOpen, onClose }) => {
-  const razorpayContainerRef = useRef();
-
+const RazorpayComponent = ({amount, onSuccess}) => {
   useEffect(() => {
-    console.log('RazorpayComponent is mounted.');
-    const formElement = document.getElementById('razorpay-form');
-    console.log('Form element:', formElement);
-    const loadRazorpayScript = async () => {
-      const script = document.createElement('script');
-      script.src = 'https://checkout.razorpay.com/v1/payment-button.js';
-      script.async = true;
-      script.id = 'razorpay-script';
-      script.setAttribute('data-payment_button_id', 'pl_N3TjLpP34wEz2s');
-
-      script.onload = () => {
-        setTimeout(initializeRazorpay, 100);
-      };
-
-      script.onerror = () => {
-        alert("Failed to load Razorpay script. Please try again later.");
-      };
-
-      const formElement = document.getElementById('razorpay-form');
-      if (formElement) {
-        formElement.appendChild(script);
-      } else {
-        console.error("Form with ID 'razorpay-form' not found.");
-      }
+    const options = {
+      key: 'YOUR_RAZORPAY_KEY',
+      amount: amount * 100, // amount in paisa
+      currency: 'INR',
+      name: 'STARTUP_PROJECTS',
+      description: 'For testing purpose',
+      handler: function (response) {
+        onSuccess(response);
+      },
+      prefill: {
+        name: 'Velmurugan',
+        email: 'mvel1620r@gmail.com',
+        contact: '7904425033',
+      },
+      notes: {
+        address: 'Razorpay Corporate office',
+      },
+      theme: {
+        color: '#3399cc',
+      },
     };
 
-    const initializeRazorpay = () => {
-      console.log('Initializing Razorpay...');
-      // Your existing initialization code
-      
-    };
+    const payment = new window.Razorpay(options);
+    payment.open();
 
-    loadRazorpayScript();
-
+    // Cleanup function
     return () => {
-      // Cleanup script on component unmount
-      const existingScript = document.getElementById('razorpay-script');
-      if (existingScript && existingScript.parentNode) {
-        existingScript.parentNode.removeChild(existingScript);
-      }
+      payment.clear();
     };
-  }, []);
+  }, [amount, onSuccess]);
 
-  return <form id="razorpay-form" ref={razorpayContainerRef} />;
+  return <></>; // Razorpay component doesn't have any UI
 };
+
 
 export default RazorpayComponent;
