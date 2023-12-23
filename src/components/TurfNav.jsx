@@ -32,7 +32,7 @@ export const TurfNav = (prop) => {
             zIndex={1} // Use a specific zIndex value
             sm="auto"
           >
-            <img style={{ maxWidth: "50%", height: "50%" }}
+            <img style={{ maxWidth: "30%", height: "auto" }}
               src="https://res.cloudinary.com/dx78kzenz/image/upload/v1703314037/header-logo_faxbai.png"
               alt=""
             />

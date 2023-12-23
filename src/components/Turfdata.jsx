@@ -41,7 +41,7 @@ export const Turfdata = () => {
       >
         {turfData.map((turf) => (
           <Box id="turfBox" key={turf.id} maxW="md" mx={4} my={4}>
-            <Box id="listingImg" width={400}>
+            <Box id="listingImg" width={300}>
               <Image src={turf.image} alt="" />
             </Box>
             <Text id="turfName" fontSize="lg" fontWeight="bold" my={2}>

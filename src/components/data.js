@@ -8,7 +8,7 @@ const turfData = [
     },
     {
       id: 2,
-      image: 'https://res.cloudinary.com/dx78kzenz/image/upload/v1702027660/Cricket_logo_a324b30c62.webp',
+      image: 'https://res.cloudinary.com/dx78kzenz/image/upload/v1703326353/cricket_b9oovn.webp',
       turfName: "Cricket Field",
       turfAddress: "Anna Nagar, Chennai",
     },

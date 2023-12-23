@@ -18,7 +18,7 @@ export const HomeNav = () => {
         <img
           src="https://res.cloudinary.com/dx78kzenz/image/upload/v1703314037/header-logo_faxbai.png"
           alt="navlogo"
-          style={{ maxWidth: "50%", height: "50%" }}
+          style={{ maxWidth: "30%", height: "auto" }}
         />
       </Box>
       <Box id="Home" position="relative" overflow="hidden">

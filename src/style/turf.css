@@ -74,16 +74,16 @@
     align-items: center;
     padding-bottom: 20px;
 }
-@media screen and (max-width: 600px) {
+/* @media screen and (max-width: 600px) {
     #listingImg img {
         height: auto; 
-        width:80%;
+        width:90%;
         object-fit: cover;
     }
-}
+} */
 
 #listingImg img{
-    height: 400px;
+    height: 300px;
     object-fit: cover;
 }
 #turfName{
