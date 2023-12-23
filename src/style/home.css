@@ -19,13 +19,13 @@
     border: 0px solid white;
 }
 #navLogo img{
-    width: 75%;
+    width: 50%;
 }
 #loginSignupBtn{
     
     margin: auto;
-    color: white;
-    background-color: #183D3D;
+    color: #ffc104;
+    background-color: #0e74be;
     border-radius: 10px;
 }
 #loginSignupBtn img{
@@ -97,13 +97,13 @@
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 #footer{
+    /* background: linear-gradient(to left, #0e74be, #D39D38);  */
     background-color: black;
-    height: 300px;
     margin-top: 50px;
     display: flex;
     justify-content: space-around;
     align-items: center;
-    
+    border-top: 2px solid black;
 }
 #footerText{
     border: 0px solid white;

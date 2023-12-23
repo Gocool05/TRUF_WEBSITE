@@ -35,53 +35,53 @@ export const Signup = () => {
   return (
     <div id="loginContainer">
       <div id="loginBg">
-        <img src='https://res.cloudinary.com/dx78kzenz/image/upload/v1702027405/signup_bg_be30752dae.png' alt="" />
+        {/* <img src='https://res.cloudinary.com/dx78kzenz/image/upload/v1700478242/fb_Post_xjctmf.jpg' alt="" /> */}
       </div>
-      <div id="loginform">
-        <h1 id="headingLogin">SIGNUP</h1>
+      <div id="loginform" style={{ paddingLeft: "20px", paddingRight: "20px", paddingBottom: "20px",backgroundColor:"white",borderRadius:"5px"}}>
+        <h1 id="headingLogin" style={{ marginTop: "20px" }}>SIGNUP</h1>
         {
             error && <Alert variant={"subtle"} status='error'>{error}</Alert>
         }
-        <div>
+        <div style={{ paddingLeft: "20px", paddingRight: "20px" }}>
           <p id="username">USERNAME</p>
           <Input
             type="text"
             placeholder="USERNAME"
             onChange={(e) => setUserName(e.target.value)}
-            border="2px solid black"
+            border="1px dotted #0e74be"
           />
         </div>
-        <div>
+        <div style={{ paddingLeft: "20px", paddingRight: "20px" }}>
           <p id="username">Mobile No</p>
           <Input
             type="phone"
             placeholder="Mobile"
             onChange={(e) => setMobile(e.target.value)}
-            border="2px solid black"
+            border="1px dotted #0e74be"
           />
         </div>
-        <div>
+        <div style={{ paddingLeft: "20px", paddingRight: "20px" }}>
           <p id="username">EMAIL</p>
           <Input
             type="text"
             placeholder="EMAIL"
             onChange={(e) => setEmail(e.target.value)}
-            border="2px solid black"
+            border="1px dotted #0e74be"
           />
         </div>
-        <div>
+        <div style={{ paddingLeft: "20px", paddingRight: "20px" }}>
           <p id="password">PASSWORD</p>
           <Input
             type="password"
             placeholder="PASSWORD"
             onChange={(e) => setPassword(e.target.value)}
-            border="2px solid black"
+            border="1px dotted #0e74be"
           />
         </div>
-        <Button id="loginFormBtn" onClick={handlesignup}>
+        <Button id="loginFormBtn" onClick={handlesignup} >
           SIGN UP
         </Button>
-        <p>Already have an account? <Link to={"/login"}>Log In</Link></p>
+        <p style={{ marginTop: "10px" }}>Already have an account? <Link to={"/login"} style={{ color: "#0e74be",fontWeight: "500" }} >Log In</Link></p>
       </div>
     </div>
   );

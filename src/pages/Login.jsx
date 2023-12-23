@@ -13,23 +13,14 @@ export const Login = () => {
   const { login, googleSignin } = useUserAuth();
   const navigate = useNavigate();
 
-  const handlesignin = async () => {
-    try {
-      await login(identifier, password);
-      alert('Login Successfully');
-      navigate('/turf');
-    } catch (err) {
-      setError(err.message);
-    }
-  };
 
-  const signinWithgoogle = async () => {
-    try {
-      await googleSignin();
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  // const signinWithgoogle = async () => {
+  //   try {
+  //     await googleSignin();
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
 
   const handlePost = async () => {
     try {
@@ -38,17 +29,17 @@ export const Login = () => {
         password,
       });
       console.log(response.data);
-      
+      navigate('/turf');
       const responseData = response.data.user.id;
       const emailId = response.data.user.email;
       const name = response.data.user.name;
-
       localStorage.setItem('emailId', emailId.toString());
       localStorage.setItem('name', name.toString());
       console.log(responseData);
       localStorage.setItem('apiResponse', responseData.toString());
-      navigate('/turf');
+      
     } catch (error) {
+      
       setError('Error posting data');
     }
   };
@@ -64,7 +55,7 @@ export const Login = () => {
       position="relative"
     >
       <Box id="loginBg" flex="1" width="100%" position="absolute">
-        <img src='https://res.cloudinary.com/dx78kzenz/image/upload/v1702026989/login_bg_d781b7756a.png' alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+        {/* <img src='https://res.cloudinary.com/dx78kzenz/image/upload/v1700478259/turfbg_fdghts.jpg' alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} /> */}
       </Box>
       <Box
         id="loginform"
@@ -83,28 +74,28 @@ export const Login = () => {
           <Text id="username" mb={2}>
             EMAIL
           </Text>
-          <Input type="text" placeholder="EMAIL" onChange={(e) => setEmail(e.target.value)} border="2px solid black" />
+          <Input type="text" placeholder="EMAIL" onChange={(e) => setEmail(e.target.value)} border="1px dotted #0e74be" />
         </Box>
         <Box>
           <Text id="password" mb={2}>
             PASSWORD
           </Text>
-          <Input type="password" placeholder="PASSWORD" onChange={(e) => setPass(e.target.value)} border="2px solid black" />
+          <Input type="password" placeholder="PASSWORD" onChange={(e) => setPass(e.target.value)} border="1px dotted #0e74be" />
         </Box>
         <Button id="loginFormBtn" onClick={handlePost} mt={4} width="100%">
           Login
         </Button>
-        <Button id="loginwithBtn" onClick={signinWithgoogle} mt={2} width="100%">
+        {/* <Button id="loginwithBtn"  mt={2} width="100%">
           <Box id="glogo" mr={2} display="inline-block" className='searchImg'>
             <img src='https://res.cloudinary.com/dx78kzenz/image/upload/v1702027041/google_logo_ff05da96f9.png' alt="" />
           </Box>
           <Text id="gtext" display="inline-block">
             Login with Google
           </Text>
-        </Button>
+        </Button> */}
         <Box mt={4}>
           <Text>
-            Don't have an account? <Link to="/signup">Sign Up</Link>
+            Don't have an account? <Link to="/signup"  style={{ color: "#0e74be",fontWeight: "500" }}>Sign Up</Link>
           </Text>
         </Box>
       </Box>

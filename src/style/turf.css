@@ -50,9 +50,14 @@
     border: 1px solid black;
 }
 #mainContainer{
-    background-color: black
+    background: linear-gradient(to top, #000000, #434343); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
 }
-#turfContainer{
+
+#turfContainer1{
+    width: 100%;
+}
+    #turfContainer{
     width: 80%;
     margin: auto;
     margin-top: 50px;
@@ -62,15 +67,23 @@
 }
 #turfBox{
     border: 0px solid white;
-    width: 50%;
+    width: 100%;
 }
 #listingImg{
     justify-content: center;
     align-items: center;
     padding-bottom: 20px;
 }
+@media screen and (max-width: 600px) {
+    #listingImg img {
+        height: auto; 
+        width:80%;
+        object-fit: cover;
+    }
+}
+
 #listingImg img{
-    height: 200px;
+    height: 400px;
     object-fit: cover;
 }
 #turfName{
@@ -78,6 +91,7 @@
     text-transform: uppercase;
     font-size: 20px;
     padding:0px ,20px,20px,20px;
+    color: white;
     
 }
 #headingTurf{

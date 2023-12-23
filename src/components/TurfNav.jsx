@@ -30,11 +30,10 @@ export const TurfNav = (prop) => {
             left={0}
             p={4}
             zIndex={1} // Use a specific zIndex value
-            width="50%" // Use "auto" to maintain the image's intrinsic size
-            height="auto"
+            sm="auto"
           >
-            <img
-              src="https://res.cloudinary.com/dx78kzenz/image/upload/v1702903503/turfzlogo_aenw8e.png"
+            <img style={{ maxWidth: "50%", height: "50%" }}
+              src="https://res.cloudinary.com/dx78kzenz/image/upload/v1703314037/header-logo_faxbai.png"
               alt=""
             />
           </Box>

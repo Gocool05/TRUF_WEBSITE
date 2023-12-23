@@ -13,6 +13,7 @@ import {
   FormControl,
   FormLabel,
   Stack,
+  Alert
 } from '@chakra-ui/react';
 import RazorpayComponent from './Razor';
 import { setSelectionRange } from '@testing-library/user-event/dist/utils';
@@ -25,8 +26,6 @@ const TimeSelectModal = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [bookings, setBookings] = useState([]);
   const [isAlreadyBooked, setIsAlreadyBooked] = useState(false);
-  const [isSelected, setIsSelected] = useState(false);
-  const [clickedButton, setClickedButton] = useState(null);
   const toast = useToast();
 
 
@@ -79,10 +78,7 @@ const TimeSelectModal = () => {
 
     setIsAlreadyBooked(isAlreadyBooked);
 
-    if (isAlreadyBooked) {
-      alert('This date and time slot is already booked. Please choose another.');
-      // Handle the case when the slot is already booked
-    } else {
+
       try {
         // Separate async function for the post request
         const handleBookingPost = async () => {
@@ -117,18 +113,18 @@ const TimeSelectModal = () => {
           
         }
         if(error.response.data.error.status == 500){
-          
+          setIsAlreadyBooked(true);
         toast({
         title: 'Already booked',
         status: 'error',
-        position: 'top-right',
+        position: 'top',
         duration: 5000, // Display duration in milliseconds
         isClosable: true,
       });
 
         }
       }
-    }
+    
   };
   // const handleTimeButtonClick = (ele) => {
   //   // handleTimeChange(ele);
@@ -165,7 +161,7 @@ const TimeSelectModal = () => {
         toast({
           title: 'Booking Successful!',
           status: 'success',
-          position: 'top-right',
+          position: 'top',
           duration: 5000, // Display duration in milliseconds
           isClosable: true,
         });
@@ -197,13 +193,13 @@ const TimeSelectModal = () => {
       <Modal isOpen={isOpen} onClose={handleClose}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader  fontSize={32} backgroundColor='#092635' color='white' >BOOK TURF</ModalHeader>
+          <ModalHeader  fontSize={32} backgroundColor='#054775' color='white' >BOOK TURF</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
             <Stack spacing={4}>
               <FormControl id="booking-form">
                 <FormLabel fontSize={20} >Date:-</FormLabel>
-                <input style={{width:'100%', border:'3px groove #C3E2C2', borderRadius:'10px' ,padding:'10px'}} type="date" onChange={handleDateChange} />
+                <input style={{width:'100%', border:'3px groove #054775', borderRadius:'10px' ,padding:'10px'}} type="date" onChange={handleDateChange} />
               </FormControl>
 
               <FormControl id="booking-form">
@@ -213,7 +209,7 @@ const TimeSelectModal = () => {
                     <Button
 
                       key={ele}
-                     style={{ backgroundColor: ele === selectedTime ? "green" : "white", color: ele === selectedTime ? "white" : "black",border:'3px inset #C3E2C2' }}
+                     style={{ backgroundColor: ele === selectedTime ? "green" : "white", color: ele === selectedTime ? "white" : "black",border:'3px inset #054775' }}
                       className="timebutton"
                        onClick={() => {setSelectedTime(ele);}}
                     >
@@ -230,7 +226,7 @@ const TimeSelectModal = () => {
               Close
             </Button>
             {/* Conditionally render RazorpayComponent */}
-            <Button colorScheme="green"  onClick={handleSubmit} disabled={isAlreadyBooked}>
+            <Button colorScheme="green"  onClick={handleSubmit} isDisabled={isAlreadyBooked}>
               Pay Now
             </Button>
           </ModalFooter>

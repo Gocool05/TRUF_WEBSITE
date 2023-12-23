@@ -24,7 +24,7 @@ export const Turfdata = () => {
   }
 
   return (
-    <Container>
+    <Container id="turfContainer1" >
       <Text
         id="headingTurf"
         fontSize={{ base: "xl", md: "2xl", lg: "5xl" }}
@@ -37,11 +37,11 @@ export const Turfdata = () => {
       <Flex
         direction={{ base: "column", md: "row" }}
         align="center"
-        justify="center"
+        justify="space-evenly"
       >
         {turfData.map((turf) => (
           <Box id="turfBox" key={turf.id} maxW="md" mx={4} my={4}>
-            <Box id="listingImg" width={200}>
+            <Box id="listingImg" width={400}>
               <Image src={turf.image} alt="" />
             </Box>
             <Text id="turfName" fontSize="lg" fontWeight="bold" my={2}>
@@ -51,7 +51,7 @@ export const Turfdata = () => {
               id="turfAddress"
               fontSize="sm"
               marginBottom={2}
-              color="gray.600"
+              color="white"
             >
               {turf.turfAddress}
             </Text>
