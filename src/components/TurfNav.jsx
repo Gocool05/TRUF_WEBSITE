@@ -1,6 +1,10 @@
 import React from "react";
 import "../style/turf.css";
 import { Container, Flex, Text, Box } from "@chakra-ui/react";
+import { PopoverProfile } from "./Popover";
+import { Navigate } from "react-router-dom";
+
+
 
 export const TurfNav = (prop) => {
   const { setTurf } = prop;
@@ -23,21 +27,26 @@ export const TurfNav = (prop) => {
           id="topNavturf"
           position="relative"
         >
+          
           <Box
             id="turfNav"
-            position="absolute"
-            top={0}
+            position={"absolute"}
             left={0}
             p={4}
-            zIndex={1} // Use a specific zIndex value
-            sm="auto"
-          >
-            <img style={{ maxWidth: "30%", height: "auto" }}
+            zIndex={1}
+            justifyContent="space-evenly"
+            alignContent="center"
+          >  
+            <img style={{ maxWidth: "30%", height: "auto",zIndex:1 }}
               src="https://res.cloudinary.com/dx78kzenz/image/upload/v1703314037/header-logo_faxbai.png"
               alt=""
-            />
+            /> 
           </Box>
-          <Box>
+          <Box id="navBtns">
+              <PopoverProfile />
+              </Box>
+          <Box >
+          
             <video autoPlay muted loop id="bgVideo" style={{ width: "100%" }}>
               <source
                 src="https://res.cloudinary.com/dx78kzenz/video/upload/v1702027513/fbvid1_snspps_0316c73aa3.mp4"
@@ -45,6 +54,7 @@ export const TurfNav = (prop) => {
               />
               Your browser does not support the video tag.
             </video>
+           
             <Flex
               direction="column"
               align="center"

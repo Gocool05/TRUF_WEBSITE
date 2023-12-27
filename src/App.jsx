@@ -4,6 +4,7 @@ import Cookies from 'js-cookie';
 import Pay from "./pages/Pay";
 import Razor from "./components/Razor";
 import Stripe from "./components/Stripe";
+import { Bookings } from "./pages/Bookings";
 
 
 

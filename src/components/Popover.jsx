@@ -42,7 +42,7 @@ export const PopoverProfile = (prop) => {
           >
             Bookings
           </Button>
-          <Button colorScheme={"green"} onClick={handleLogout}>
+          <Button colorScheme={"green"} onClick={() => navigate("/login")}>
             Logout
           </Button>
         </PopoverBody>

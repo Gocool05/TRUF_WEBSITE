@@ -6,11 +6,15 @@
     width: 100%;
 }
 
+
 #navBtns{
     border: 0px solid black;
-    width: 25%;
-    display: flex;
-    justify-content: space-around;
+    float: right;
+    position: absolute;
+    top: 15px;
+    z-index: 1;
+    right:15px;
+
     
 }
 #topNavturf{
@@ -68,6 +72,8 @@
 #turfBox{
     border: 0px solid white;
     width: 100%;
+    align-content: center;
+    justify-content: center;
 }
 #listingImg{
     justify-content: center;

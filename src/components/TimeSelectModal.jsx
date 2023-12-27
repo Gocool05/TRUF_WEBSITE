@@ -26,6 +26,10 @@ const TimeSelectModal = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [bookings, setBookings] = useState([]);
   const [isAlreadyBooked, setIsAlreadyBooked] = useState(false);
+  const [isDateValid, setIsDateValid] = useState(false);
+  const [isTimeSelected, setIsTimeSelected] = useState(false);
+
+
   const toast = useToast();
 
 
@@ -36,14 +40,18 @@ const TimeSelectModal = () => {
 
 
   const handleDateChange = (event) => {
-    setSelectedDate(event.target.value);
+    const selectedDate = event.target.value;
+  setSelectedDate(selectedDate);
+
+  // Check if the selected date is valid (you can customize the validation logic)
+  const isValid = selectedDate !== null ;
+  setIsDateValid(isValid);
   };
 
-  // const handleTimeChange = (time) => {
-  //   setSelectedTime(time);
-  //   console.log(time);
-  //   console.log(selectedTime);
-  // };
+
+
+
+  
 
   const handleClose = () => {
     setIsOpen(false);
@@ -83,14 +91,14 @@ const TimeSelectModal = () => {
         // Separate async function for the post request
         const handleBookingPost = async () => {
           console.log(selectedDate,selectedTime)
-
+          const userId = localStorage.getItem('userId');
           const response = await axios.post( 'https://strapi.letstrydevandops.site/api/bookings',
             {
               "data":{
                 timeslots: selectedTime,
                 date: selectedDate, 
                 payment_id: '123456789',
-                user:'hello'
+                users_permissions_user:userId
               }
              
               // Add other data you want to send
@@ -146,13 +154,16 @@ const TimeSelectModal = () => {
         name:"STARTUP_PROJECTS",
         description:"for testing purpose",
         handler: async function (Paymentresponse){
+
+         const email= localStorage.getItem('emailId');
+         const userId = localStorage.getItem('userId');
           const response = await axios.post( 'https://strapi.letstrydevandops.site/api/bookings',
           {
             "data":{
               timeslots: updatedTime, 
               date: updatedDate, 
               payment_id: Paymentresponse.razorpay_payment_id,
-              user:'hello'
+              users_permissions_user:userId
             }
            
             // Add other data you want to send
@@ -212,6 +223,8 @@ const TimeSelectModal = () => {
                      style={{ backgroundColor: ele === selectedTime ? "green" : "white", color: ele === selectedTime ? "white" : "black",border:'3px inset #054775' }}
                       className="timebutton"
                        onClick={() => {setSelectedTime(ele);}}
+
+
                     >
                       {ele.substring(1)}
                     </Button>
@@ -226,7 +239,7 @@ const TimeSelectModal = () => {
               Close
             </Button>
             {/* Conditionally render RazorpayComponent */}
-            <Button colorScheme="green"  onClick={handleSubmit} isDisabled={isAlreadyBooked}>
+            <Button colorScheme="green"  onClick={handleSubmit} isDisabled={!isDateValid || isAlreadyBooked }>
               Pay Now
             </Button>
           </ModalFooter>

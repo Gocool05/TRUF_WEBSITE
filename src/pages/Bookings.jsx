@@ -6,91 +6,106 @@ import { Link, useNavigate } from "react-router-dom";
 // import { database } from "../firebase-config/config";
 import { Button, Text } from "@chakra-ui/react";
 // import { PopoverProfile } from "../components/Popover";
+import {
+  Card,
+  CardHeader,
+  CardBody,
+  CardFooter,
+  Heading,
+  Image,
+} from "@chakra-ui/react";
+import axios from "axios";
 import { BookingSkeleton } from "../components/BookingSkeleton";
 export const Bookings = () => {
-  // const { user} = useUserAuth();
-  // const [name, setName] = useState("");
-  // const [image, setImage] = useState("");
-  // const [add, setAdd] = useState("");
-  // const [time, setTime] = useState("");
-  // const [email, setEmail] = useState("");
-  // const [date,setDate] = useState("")
-  // const [error, setError] = useState("");
-  // const [loading, setLoading] = useState(false);
-  // const navigate = useNavigate()
+  const [name, setName] = useState("");
+  const [image, setImage] = useState("");
+  const [add, setAdd] = useState("");
+  const [responseTime, setResponseTime] = useState("");
+  const [responseDate, setResponseDate] = useState("");
+  const [email, setEmail] = useState("");
+  const [date, setDate] = useState("");
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
+  const handlePost = async () => {
+    try {
+      const response = await axios.get(
+        `https://strapi.letstrydevandops.site/api/bookings?populate=users_permissions_user&filters[users_permissions_user][email][$eq]=${email}`
+      );
+      // Assuming you have an array declared before this function
 
-  // const getUserData = (uid) => {
-  //   setLoading(true);
-  //   const userRef = ref(database, "users/" + uid);
-  //   onValue(userRef, (snapshot) => {
-  //     const data = snapshot.val();
-  //     if (data === null) {
-  //       setError("No Bookings found");
-  //       setLoading(false);
-  //     } else {
-  //       const bookingName = data.data;
-  //       setName(bookingName.booking.name);
-  //       setImage(bookingName.booking.image);
-  //       setAdd(bookingName.booking.address);
-  //       setTime(bookingName.time);
-  //       setEmail(bookingName.email);
-  //       setDate(bookingName.bookingDate)
-  //       setLoading(false);
-  //     }
-  //   });
-  // };
-  
-  // useEffect(() => {
-  //   if (user) {
-  //     getUserData(user.uid);
-  //   }
-  // });
+      setResponseTime(response.data.data[0].attributes.timeslots);
+      setResponseDate(response.data.data[0].attributes.date);
+      console.log(response);
+    } catch (error) {
+      // Handle error if the request fails
+      console.error("Error:", error);
+    }
+  };
 
-  // const handleCancel = (uid) => {
-  //   const userRef = ref(database, "users/" + user.uid);
-  //   remove(userRef).then(()=>{
-  //     alert("Successfully Canceled Bookings")
-  //     navigate("/turf")
-  //   })
-  // }
-  // // const handleLogout = async () => {
-  // //   try {
-  // //     await logout();
-  // //   } catch (err) {
-  // //     console.log(err.message);
-  // //   }
-  // // };
-  // const BookingDiv = () => {
-  //   if (error === "") {
-  //     return (
-  //       <div id="bookingsDetails">
-  //         <p id="BookedTurfName">Current Booking</p>
-  //         <p>{name}</p>
-  //         <div id="bookingImageBox">
-  //           <img src={image} alt="" />
-  //         </div>
-  //         <p>Address : {add}</p>
-  //         <p>Time : {time}</p>
-  //         <p>Date : {date}</p>
-  //         <Button colorScheme={"Green"} onClick={handleCancel}>Cancel</Button>
-  //       </div>
-  //     );
-  //   } else {
-  //     return (
-  //       <div id="errorOrder">
-  //         <Text
-  //           fontSize={"50px"}
-  //           textAlign="center"
-  //           marginTop={"50px"}
-  //           fontWeight="bold"
-  //         >
-  //          {error}
-  //         </Text>
-  //       </div>
-  //     );
-  //   }
-  // };
+  // Call the function to initiate the post request
+  handlePost();
+
+  useEffect(() => {
+    setEmail(localStorage.getItem("emailId"));
+  }, []);
+
+  const handleCancel = async () => {
+    const userConfirmed = window.confirm(
+      "Are you sure you want to cancel the booking?"
+    );
+
+    if (userConfirmed) {
+      try {
+        const response = await axios.delete(
+          `https://strapi.letstrydevandops.site/api/bookings/58`
+        );
+        console.log(response);
+        navigate("/turf");
+      } catch (error) {
+        console.error(error);
+      }
+    } else {
+      console.log("Cancellation was canceled by the user");
+    }
+  };
+
+  const BookingDiv = () => {
+    if (responseDate.length < 1) {
+      return (
+        <Card id="bookingsDetails" align="center">
+          <CardHeader className="cardHeader" color={"white"} textTransform="uppercase">
+            <Heading size="xl">{email}</Heading>
+          </CardHeader>
+          <CardBody id="bookingImageBox">
+            <Image
+              objectFit="cover"
+              borderRadius={"10px"}
+              src="https://res.cloudinary.com/dx78kzenz/image/upload/v1700478238/ball_ezzhpr.png"
+              alt="image"
+            />
+            <Text>Time : {responseTime.substring(1)}</Text>
+            <Text>Date : {responseDate}</Text>
+          </CardBody>
+          <CardFooter>
+            <Button onClick={handleCancel}>Cancel Booking</Button>
+          </CardFooter>
+        </Card>
+      );
+    } else {
+      return (
+        <Text
+          fontSize={"50px"}
+          textAlign="center"
+          marginTop={"50px"}
+          fontWeight="bold"
+        >
+          No bookings found
+        </Text>
+      );
+    }
+  };
 
   return (
     <div>
@@ -98,11 +113,17 @@ export const Bookings = () => {
         <Link to={"/turf"}>
           <IoMdArrowRoundBack fontWeight={"bold"} fontSize="30px" />
         </Link>
-        <Text color={"Green"} fontSize="30px" fontWeight={"bold"}>
-          Bookings
+        <Text
+          color={"Green"}
+          textAlign="center"
+          fontSize="50px"
+          fontWeight={"bold"}
+          textTransform="uppercase"
+        >
+          My Bookings
         </Text>
       </div>
-      {/* {loading ? <BookingSkeleton /> : <BookingDiv />} */}
+      {loading ? <BookingSkeleton /> : <BookingDiv />}
     </div>
   );
 };
