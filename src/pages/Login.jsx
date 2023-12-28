@@ -32,10 +32,10 @@ export const Login = () => {
       navigate('/turf');
       const responseData = response.data.user.id;
       const emailId = response.data.user.email;
-      const name = response.data.user.name;
+      const name = response.data.user.username;
       localStorage.setItem('userId', responseData.toString());
       localStorage.setItem('emailId', emailId.toString());
-      localStorage.setItem('name', name.toString());
+      localStorage.setItem('Name', name.toString());
       console.log(responseData);
       localStorage.setItem('apiResponse', responseData.toString());
       

@@ -49,6 +49,7 @@ export const Bookings = () => {
 
   useEffect(() => {
     setEmail(localStorage.getItem("emailId"));
+    setName(localStorage.getItem("Name"));
   }, []);
 
   const handleCancel = async () => {
@@ -72,14 +73,14 @@ export const Bookings = () => {
   };
 
   const BookingDiv = () => {
-    if (responseDate.length < 1) {
+    if (responseDate.length > 1) {
       return (
         <Card id="bookingsDetails" align="center">
-          <CardHeader className="cardHeader" color={"white"} textTransform="uppercase">
-            <Heading size="xl">{email}</Heading>
+          <CardHeader className="cardHeader">
+            <Heading>{name}</Heading>
           </CardHeader>
           <CardBody id="bookingImageBox">
-            <Image
+            <Image  
               objectFit="cover"
               borderRadius={"10px"}
               src="https://res.cloudinary.com/dx78kzenz/image/upload/v1700478238/ball_ezzhpr.png"

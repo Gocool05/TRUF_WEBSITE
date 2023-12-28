@@ -132,17 +132,27 @@
    padding: 0%;
    margin: 0%;
    font-weight: bold;
-   left: 38%;
    width: 400px;
+   margin-left: 38%;
+   margin-right: 38%;
    height: auto;
    border-radius: 10px;
    background: linear-gradient(to right, #000000, #434343); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
    color: white;  
 }
+
+@media (max-width: 767px) {
+    #bookingsDetails {
+       margin-left: 0;
+       margin-right: 0;
+       width: 100%; /* Make it full-width on smaller screens */
+    }
+ }
 #bookingImageBox{
     left: 0%;
     background: linear-gradient(to right, #000000, #434343);
 }
 .cardHeader{
-    background: linear-gradient(to right, #000000, #434343); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    text-transform: uppercase;
+    max-width: 100%;
 }
