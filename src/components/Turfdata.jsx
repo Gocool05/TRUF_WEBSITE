@@ -3,6 +3,7 @@ import turfData from "./data";
 import { Loading } from "./Loading";
 import { Box, Text, Image, Flex, Container, Button } from "@chakra-ui/react";
 import TimeSelectModal from "./TimeSelectModal";
+import { SunIcon } from '@chakra-ui/icons'
 
 export const Turfdata = () => {
   const [element, setElement] = useState({});
@@ -29,9 +30,12 @@ export const Turfdata = () => {
         id="headingTurf"
         fontSize={{ base: "xl", md: "2xl", lg: "5xl" }}
         textAlign="center"
+        fontWeight="bold"
         my={4}
       >
+        <SunIcon  mr={2} mb={2} boxSize={6} color="#ffc104"  alignContent="center" />
         Book Your Turf
+        <SunIcon  ml={2} mb={2}  boxSize={6} color="#ffc104" alignContent="center" />
       </Text>
 
       <Flex

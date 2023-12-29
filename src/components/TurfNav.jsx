@@ -37,7 +37,7 @@ export const TurfNav = (prop) => {
             justifyContent="space-evenly"
             alignContent="center"
           >  
-            <img style={{ maxWidth: "30%", height: "auto",zIndex:1 }}
+            <img style={{ maxWidth: "40%", height: "auto",zIndex:1 }}
               src="https://res.cloudinary.com/dx78kzenz/image/upload/v1703314037/header-logo_faxbai.png"
               alt=""
             /> 
@@ -66,20 +66,20 @@ export const TurfNav = (prop) => {
               width="100%"
             >
               <Text
-                fontSize={{ base: "xl", md: "3xl", lg: "6xl" }}
+                fontSize={{ base: "xl", md: "2xl", lg: "5xl" }}
                 textAlign="center"
                 fontWeight={"bold"}
-                color="white"
-                mb={2}
+                className="playball"
+                mb={1}
               >
                 WANNA PLAY BALL ?{" "}
+                </Text>
                 <Text
+                color="#054775"
                   fontWeight="bold"
-                  color="green"
-                  fontSize={{ base: "xl", md: "3xl", lg: "6xl" }}
+                  fontSize={{ base: "2xl", md: "3xl", lg: "6xl" }}
                 >
                   BOOK YOUR `TURF` NOW
-                </Text>
               </Text>
             </Flex>
           </Box>

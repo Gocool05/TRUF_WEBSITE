@@ -1,9 +1,20 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Box, Button, Text, Image, Flex } from '@chakra-ui/react';
-
+import { SunIcon } from '@chakra-ui/icons';
 export const HomeBody = () => {
   return (
+    <>
+    <Text
+        className='headingTurfz'
+        fontSize={{ base: "2xl", md: "4xl", lg: "6xl" }}
+        textAlign="center"
+        my={4}
+      >
+        <SunIcon mr={2} mb={2} boxSize={6} color="#ffc104"  alignContent="center" />
+        Sunshine Turf
+        <SunIcon ml={2} mb={2}  boxSize={6} color="#ffc104" alignContent="center" />
+      </Text>
     <Flex
       direction={{ base: 'column', md: 'row' }}
       align='center'
@@ -12,6 +23,7 @@ export const HomeBody = () => {
       p={4}
       
     >
+      
       <Box id='ballImg' textAlign='center' flex='1'  mb={{ base: 10, md: 0 }}>
         <Image src="https://res.cloudinary.com/dx78kzenz/image/upload/v1702026706/Football1_bgcmr3_133d203472.png" alt='Football' maxWidth='100%' />
       </Box>
@@ -29,5 +41,6 @@ export const HomeBody = () => {
         </Link>
       </Box>
     </Flex>
+    </>
   );
 };

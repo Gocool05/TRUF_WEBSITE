@@ -220,7 +220,7 @@ const TimeSelectModal = () => {
                     <Button
 
                       key={ele}
-                     style={{ backgroundColor: ele === selectedTime ? "green" : "white", color: ele === selectedTime ? "white" : "black",border:'3px inset #054775' }}
+                     style={{ backgroundColor: ele === selectedTime ? "#fdc300" : "white", color: ele === selectedTime ? "white" : "black",border:'3px inset #054775' }}
                       className="timebutton"
                        onClick={() => {setSelectedTime(ele);}}
 
@@ -239,7 +239,7 @@ const TimeSelectModal = () => {
               Close
             </Button>
             {/* Conditionally render RazorpayComponent */}
-            <Button colorScheme="green"  onClick={handleSubmit} isDisabled={!isDateValid || isAlreadyBooked }>
+            <Button colorScheme="blue"  onClick={handleSubmit} isDisabled={!isDateValid || isAlreadyBooked }>
               Pay Now
             </Button>
           </ModalFooter>

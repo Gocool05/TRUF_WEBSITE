@@ -1,11 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { IoMdArrowRoundBack } from "react-icons/io";
 import { Link, useNavigate } from "react-router-dom";
-// import { useUserAuth } from "../context/Authcontext";
-// import { ref, onValue ,remove} from "firebase/database";
-// import { database } from "../firebase-config/config";
 import { Button, Text } from "@chakra-ui/react";
-// import { PopoverProfile } from "../components/Popover";
 import {
   Card,
   CardHeader,
@@ -109,17 +105,18 @@ export const Bookings = () => {
   };
 
   return (
-    <div>
+    <div id="bookingContainer">
       <div id="paymentNav">
         <Link to={"/turf"}>
           <IoMdArrowRoundBack fontWeight={"bold"} fontSize="30px" />
         </Link>
         <Text
-          color={"Green"}
+          color="#033153"
           textAlign="center"
           fontSize="50px"
           fontWeight={"bold"}
           textTransform="uppercase"
+          mb={4}
         >
           My Bookings
         </Text>

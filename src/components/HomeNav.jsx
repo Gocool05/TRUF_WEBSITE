@@ -18,7 +18,7 @@ export const HomeNav = () => {
         <img
           src="https://res.cloudinary.com/dx78kzenz/image/upload/v1703314037/header-logo_faxbai.png"
           alt="navlogo"
-          style={{ maxWidth: "30%", height: "auto" }}
+          style={{ maxWidth: "40%", height: "auto" }}
         />
       </Box>
       <Box id="Home" position="relative" overflow="hidden">
@@ -39,7 +39,9 @@ export const HomeNav = () => {
           transform="translate(-50%, -50%)"
           width="100%"
         >
-          <Text fontSize={{ base: "xl", md: "2xl", lg: "6xl" }} color="white">
+          <Text  className="homeHeading"
+                  fontWeight="bold"
+                  fontSize={{ base: "2xl", md: "3xl", lg: "6xl" }}>
             BOOK YOUR GROUND ONLINE WITH US
           </Text>
           <Link to={"/login"}>

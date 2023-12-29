@@ -23,7 +23,7 @@ export const PopoverProfile = (prop) => {
   return (
     <Popover>
       <PopoverTrigger>
-        <Button colorScheme={"green"}>
+        <Button colorScheme={"blue"}>
           {<AiOutlineUser fontSize={"22px"} />}
         </Button>
       </PopoverTrigger>
@@ -36,13 +36,13 @@ export const PopoverProfile = (prop) => {
         </PopoverHeader>
         <PopoverBody display={"grid"} gap="20px">
           <Button
-            colorScheme={"green"}
+            colorScheme={"blue"}
             width="100%"
             onClick={() => navigate("/booking")}
           >
             Bookings
           </Button>
-          <Button colorScheme={"green"} onClick={() => navigate("/login")}>
+          <Button colorScheme={"blue"} onClick={() => navigate("/login")}>
             Logout
           </Button>
         </PopoverBody>

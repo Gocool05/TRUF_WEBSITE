@@ -46,16 +46,31 @@
     font-weight: bold;
     font-family: Inter, sans-serif;
 }
+.App{
+    background-image: url('https://res.cloudinary.com/dx78kzenz/image/upload/v1703852437/y-bg_1_nhplad.jpg');
+
+}
 #homeBody{
     width: 100%;
-    margin: auto;
-    margin-top: 20px;
     display: flex;
+    bottom: 0%;
     justify-content: space-around;
+
+}
+.headingTurfz{
+   filter: drop-shadow(0px 0px 10px white);
+   font-weight: bold;
+   text-transform: uppercase;
+   font-size: 20px;
+   padding:0px ,20px,20px,20px;
+   color: #0e74be;
+    
 }
 #ballImg{
     width: auto;
     border: 0px solid black;
+   filter: drop-shadow(10px 10px 10px black);
+
 }
 #ballImg img{
     width: 60%;
@@ -98,12 +113,12 @@
 }
 #footer{
     /* background: linear-gradient(to left, #0e74be, #D39D38);  */
-    background-color: black;
+    background-color: #054775;
     margin-top: 50px;
     display: flex;
     justify-content: space-around;
     align-items: center;
-    border-top: 2px solid black;
+    /* border-top: 2px solid black; */
 }
 #footerText{
     border: 0px solid white;
@@ -125,8 +140,15 @@
     border: 0px solid white;
     width: 10%;
 }
+.homeHeading{
+    background: -webkit-linear-gradient(#fdc300, #9a141b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+#bookingContainer{
+height: 100vh;
 
-
+}
 #bookingsDetails {
    font-size: xx-large;
    padding: 0%;
