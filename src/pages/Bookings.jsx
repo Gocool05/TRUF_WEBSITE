@@ -19,21 +19,22 @@ export const Bookings = () => {
   const [responseTime, setResponseTime] = useState("");
   const [responseDate, setResponseDate] = useState("");
   const [email, setEmail] = useState("");
-  const [date, setDate] = useState("");
+  const [bookingId, setBookingId] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-
+  
   const handlePost = async () => {
     try {
       const response = await axios.get(
         `https://strapi.letstrydevandops.site/api/bookings?populate=users_permissions_user&filters[users_permissions_user][email][$eq]=${email}`
       );
       // Assuming you have an array declared before this function
-
+      setBookingId(response.data.data[0].id);
       setResponseTime(response.data.data[0].attributes.timeslots);
       setResponseDate(response.data.data[0].attributes.date);
       console.log(response);
+      console.log(bookingId);
     } catch (error) {
       // Handle error if the request fails
       console.error("Error:", error);
@@ -56,7 +57,7 @@ export const Bookings = () => {
     if (userConfirmed) {
       try {
         const response = await axios.delete(
-          `https://strapi.letstrydevandops.site/api/bookings/58`
+          `https://strapi.letstrydevandops.site/api/bookings/${bookingId}`
         );
         console.log(response);
         navigate("/turf");
