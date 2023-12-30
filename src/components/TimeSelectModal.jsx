@@ -201,7 +201,7 @@ const TimeSelectModal = () => {
         Book Now
       </Button>
 
-      <Modal isOpen={isOpen} onClose={handleClose}>
+      <Modal  closeOnOverlayClick={false} isOpen={isOpen} onClose={handleClose}>
         <ModalOverlay />
         <ModalContent>
           <ModalHeader  fontSize={32} backgroundColor='#054775' color='white' >BOOK TURF</ModalHeader>

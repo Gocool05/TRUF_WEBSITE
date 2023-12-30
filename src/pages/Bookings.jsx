@@ -77,13 +77,13 @@ export const Bookings = () => {
             <Heading>{name}</Heading>
           </CardHeader>
           <CardBody id="bookingImageBox">
-            <Image  
+            <Image 
               objectFit="cover"
               borderRadius={"10px"}
               src="https://res.cloudinary.com/dx78kzenz/image/upload/v1700478238/ball_ezzhpr.png"
               alt="image"
             />
-            <Text>Time : {responseTime.substring(1)}</Text>
+            <Text>Time : {responseTime.substring(1)}</Text> 
             <Text>Date : {responseDate}</Text>
           </CardBody>
           <CardFooter>
@@ -115,7 +115,7 @@ export const Bookings = () => {
           color="#033153"
           textAlign="center"
           fontSize="50px"
-          fontWeight={"bold"}
+          fontWeight={"bold"} 
           textTransform="uppercase"
           mb={4}
         >
