@@ -146,7 +146,19 @@
     -webkit-text-fill-color: transparent;
 }
 #bookingContainer{
+max-height: max-content;
 height: 100vh;
+}
+
+#bookingContainers{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    gap: 10px;
+}
+.bookingCard{
+    background: linear-gradient(to bottom, #403b4a, #e7e9bb); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
 }
 #bookingsDetails {

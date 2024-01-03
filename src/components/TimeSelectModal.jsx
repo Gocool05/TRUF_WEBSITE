@@ -44,9 +44,12 @@ const TimeSelectModal = () => {
   setSelectedDate(selectedDate);
 
   // Check if the selected date is valid (you can customize the validation logic)
-  const isValid = selectedDate !== null ;
-  setIsDateValid(isValid);
-  };
+  // const isValid = selectedDate !== null ;
+  if(selectedDate !== null){
+  setIsDateValid(true);
+  }
+
+};
 
 
 
@@ -78,15 +81,11 @@ const TimeSelectModal = () => {
   
 
   const handleBookingSubmit = async () => {
-    const selectedDateTime = `${selectedDate} ${selectedTime}`;
+    // const selectedDateTime = `${selectedDate} ${selectedTime}`;
   
-    const isAlreadyBooked = bookings.some(booking => {
-      return booking.attributes.date === selectedDate && booking.attributes.timeslots === selectedTime;
-    });
-
-    setIsAlreadyBooked(isAlreadyBooked);
-
-
+    // const isAlreadyBooked = bookings.some(booking => {
+    //   return booking.attributes.date === selectedDate && booking.attributes.timeslots === selectedTime;
+    // });
       try {
         // Separate async function for the post request
         const handleBookingPost = async () => {
@@ -102,12 +101,13 @@ const TimeSelectModal = () => {
               }
              
               // Add other data you want to send
-            }
+            },
           );
   
           if (response.status === 200) {
             // Add your logic for successful booking
             alert('Booking Successful!');
+            
           }
         };
   
@@ -118,7 +118,7 @@ const TimeSelectModal = () => {
         if(error.response.data.error.status == 400){
           setupdatedDate(selectedDate);
           setupdatedTime(selectedTime);
-          
+
         }
         if(error.response.data.error.status == 500){
           setIsAlreadyBooked(true);
@@ -145,6 +145,7 @@ const TimeSelectModal = () => {
   
   const handleSubmit = (e)=>{
     // e.preventDefault();
+    handleClose();
      const amount = 800;
       var options = {
         key: "rzp_test_PoAoGSZFB5kaIL",
@@ -168,14 +169,19 @@ const TimeSelectModal = () => {
            
             // Add other data you want to send
           }
+
         );
+        handleClose();
         toast({
           title: 'Booking Successful!',
           status: 'success',
           position: 'top',
           duration: 5000, // Display duration in milliseconds
           isClosable: true,
-        });
+          
+        }
+        );
+        
         },
         prefill: {
           name:"GOCOOL",
@@ -222,9 +228,7 @@ const TimeSelectModal = () => {
                       key={ele}
                      style={{ backgroundColor: ele === selectedTime ? "#fdc300" : "white", color: ele === selectedTime ? "white" : "black",border:'3px inset #054775' }}
                       className="timebutton"
-                       onClick={() => {setSelectedTime(ele);}}
-
-
+                       onClick={() => {setSelectedTime(ele); setupdatedTime(null)}}
                     >
                       {ele.substring(1)}
                     </Button>
@@ -239,7 +243,7 @@ const TimeSelectModal = () => {
               Close
             </Button>
             {/* Conditionally render RazorpayComponent */}
-            <Button colorScheme="blue"  onClick={handleSubmit} isDisabled={!isDateValid || isAlreadyBooked }>
+            <Button colorScheme="blue"  onClick={handleSubmit} isDisabled= {updatedTime === null || selectedDate=== null }>
               Pay Now
             </Button>
           </ModalFooter>

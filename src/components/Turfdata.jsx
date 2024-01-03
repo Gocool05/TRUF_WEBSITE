@@ -3,7 +3,8 @@ import turfData from "./data";
 import { Loading } from "./Loading";
 import { Box, Text, Image, Flex, Container, Button } from "@chakra-ui/react";
 import TimeSelectModal from "./TimeSelectModal";
-import { SunIcon } from '@chakra-ui/icons'
+import { SunIcon } from '@chakra-ui/icons';
+import { BookingSkeleton } from "./BookingSkeleton";
 
 export const Turfdata = () => {
   const [element, setElement] = useState({});
@@ -19,7 +20,7 @@ export const Turfdata = () => {
   if (Loading) {
     return (
       <Container id="turfContainer" centerContent>
-        <p>Loading...</p>
+        <BookingSkeleton />
       </Container>
     );
   }

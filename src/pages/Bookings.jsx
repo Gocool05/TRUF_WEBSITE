@@ -12,6 +12,7 @@ import {
 } from "@chakra-ui/react";
 import axios from "axios";
 import { BookingSkeleton } from "../components/BookingSkeleton";
+import { auto } from "@cloudinary/url-gen/qualifiers/quality";
 export const Bookings = () => {
   const [name, setName] = useState("");
   const [image, setImage] = useState("");
@@ -23,33 +24,67 @@ export const Bookings = () => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const [bookingsData, setbookingsData] = useState([]);
   
-  const handlePost = async () => {
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          `https://strapi.letstrydevandops.site/api/bookings?populate=users_permissions_user&filters[users_permissions_user][email][$eq]=${email}`
+        );
+
+        const extractedData = response.data.data.map(item => ({
+          id: item.id,
+          date: item.attributes.date,
+          timeslots: item.attributes.timeslots,
+          // Add other attributes you want to extract
+        }));
+
+        setbookingsData(extractedData);
+        console.log(extractedData);
+        setLoading(false); // Set loading to false after data is fetched
+      } catch (error) {
+        console.error("Error:", error);
+        setLoading(false); // Set loading to false in case of an error
+        setError("Error fetching data");
+      }
+    };
+   
+    setEmail(localStorage.getItem("emailId"));
+    setName(localStorage.getItem("Name"));
+    setLoading(true); // Set loading to true before data fetching
+    fetchData(); // Call fetchData function inside useEffect
+  }, [email]);
+  const handlePosts = async () => {
     try {
       const response = await axios.get(
         `https://strapi.letstrydevandops.site/api/bookings?populate=users_permissions_user&filters[users_permissions_user][email][$eq]=${email}`
       );
+  
       // Assuming you have an array declared before this function
-      setBookingId(response.data.data[0].id);
-      setResponseTime(response.data.data[0].attributes.timeslots);
-      setResponseDate(response.data.data[0].attributes.date);
-      console.log(response);
-      console.log(bookingId);
+      const bookingsData = response.data.data.map(item => ({
+         id: item.id,
+        date: item.attributes.date,
+        timeslots: item.attributes.timeslots,
+        // Add other attributes you want to extract
+      }));
+      // setbookingsData(bookingsData);
+      // Now `bookingsData` contains an array with all the extracted data
+      console.log(bookingsData);
     } catch (error) {
       // Handle error if the request fails
       console.error("Error:", error);
     }
   };
-
-  // Call the function to initiate the post request
-  handlePost();
+  
+  // handlePosts();
 
   useEffect(() => {
     setEmail(localStorage.getItem("emailId"));
     setName(localStorage.getItem("Name"));
   }, []);
 
-  const handleCancel = async () => {
+  const handleCancel = async (id) => {
     const userConfirmed = window.confirm(
       "Are you sure you want to cancel the booking?"
     );
@@ -57,9 +92,10 @@ export const Bookings = () => {
     if (userConfirmed) {
       try {
         const response = await axios.delete(
-          `https://strapi.letstrydevandops.site/api/bookings/${bookingId}`
+          `https://strapi.letstrydevandops.site/api/bookings/${id}`
         );
         console.log(response);
+        setbookingsData(prevBookingsData => prevBookingsData.filter(booking => booking.id !== id));
         navigate("/turf");
       } catch (error) {
         console.error(error);
@@ -70,26 +106,37 @@ export const Bookings = () => {
   };
 
   const BookingDiv = () => {
-    if (responseDate.length > 1) {
-      return (
-        <Card id="bookingsDetails" align="center">
-          <CardHeader className="cardHeader">
-            <Heading>{name}</Heading>
-          </CardHeader>
-          <CardBody id="bookingImageBox">
-            <Image 
-              objectFit="cover"
-              borderRadius={"10px"}
-              src="https://res.cloudinary.com/dx78kzenz/image/upload/v1700478238/ball_ezzhpr.png"
-              alt="image"
-            />
-            <Text>Time : {responseTime.substring(1)}</Text> 
-            <Text>Date : {responseDate}</Text>
-          </CardBody>
-          <CardFooter>
-            <Button onClick={handleCancel}>Cancel Booking</Button>
-          </CardFooter>
-        </Card>
+    
+    if (bookingsData.length > 0) {
+      return ( 
+      <div id="bookingContainers">
+          {bookingsData.map((booking, index) => (
+            <Card key={index} className="bookingCard" id={`bookingDetails${index}`} align="center">
+              <CardHeader className="cardHeader">
+                <Heading color={"white"}>Cricket/Football</Heading>
+              </CardHeader>
+              <CardBody id={`bookingImageBox${index}`}>
+                <Image  
+                  objectFit="cover"
+                  borderRadius={"10px"}
+                  marginBottom={"10px"}
+                  height={"300px"}
+                  width="auto"
+                  src="https://res.cloudinary.com/dx78kzenz/image/upload/v1704278396/cricket_football_i9ouek.jpg"
+                  alt="image"
+                />
+                <Text fontSize={"20px"} fontWeight={"bold"} textTransform="uppercase">Time : {booking.timeslots.substring(1)}</Text> 
+                <Text fontSize={"20px"} fontWeight={"bold"} textTransform="uppercase" >Date : {booking.date}</Text>
+              </CardBody>
+              <CardFooter>
+                <Button colorScheme="blue" onClick={() => handleCancel(booking.id)}>
+                  Cancel Booking
+                </Button>
+              </CardFooter>
+            </Card>
+          )
+          )}
+        </div>
       );
     } else {
       return (
@@ -107,7 +154,7 @@ export const Bookings = () => {
 
   return (
     <div id="bookingContainer">
-      <div id="paymentNav">
+      <div >
         <Link to={"/turf"}>
           <IoMdArrowRoundBack fontWeight={"bold"} fontSize="30px" />
         </Link>
@@ -119,7 +166,7 @@ export const Bookings = () => {
           textTransform="uppercase"
           mb={4}
         >
-          My Bookings
+          {name}'s Bookings
         </Text>
       </div>
       {loading ? <BookingSkeleton /> : <BookingDiv />}
