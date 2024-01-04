@@ -10,7 +10,7 @@ export const HomeNav = () => {
         position="absolute"
         top={0}
         left={0}
-        p={4}
+
         zIndex={1} // Use a specific zIndex value
         // Use "auto" to maintain the image's intrinsic size
         height="auto" // Set a fixed height for the logo
@@ -18,7 +18,7 @@ export const HomeNav = () => {
         <img
           src="https://res.cloudinary.com/dx78kzenz/image/upload/v1703314037/header-logo_faxbai.png"
           alt="navlogo"
-          style={{ maxWidth: "40%", height: "auto" }}
+          style={{ maxWidth: "30%", height: "auto",zIndex:1,marginLeft:"1em"}}
         />
       </Box>
       <Box id="Home" position="relative" overflow="hidden">
