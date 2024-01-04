@@ -51,6 +51,12 @@ Follow these steps to set up the project on your local machine:
 ## Interface2
 <img width="1261" alt="Turf Data" src="https://github.com/Gocool05/TURF_WEBSITE/blob/main/public/Nav-Data.png">
 
+## Loading
+<img width="1261" alt="Turf Data" src="https://github.com/Gocool05/TURF_WEBSITE/blob/main/public/Loading.png">
+
+## Already Booked
+<img width="1265" alt="Booking" src="https://github.com/Gocool05/TURF_WEBSITE/blob/main/public/AlreadyBooked.png">
+
 ## Booking
 <img width="1265" alt="Booking" src="https://github.com/Gocool05/TURF_WEBSITE/blob/main/public/Bookings.png">
 
