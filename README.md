@@ -35,21 +35,24 @@ Follow these steps to set up the project on your local machine:
 
 ## Screenshots
 ## Front Page 1
-<img width="1265" alt="Turf home" src="https://github.com/Gocool05/TURF_WEBSITE/blob/main/public/Home1.png">
+<img width="1265" alt="Turf home" src="https://github.com/Gocool05/TURF_WEBSITE/blob/main/public/homepage1.png">
 ## Front Page 2
-<img width="1265" alt="Turf home" src="https://github.com/Gocool05/TURF_WEBSITE/blob/main/public/Home2.png">
+<img width="1265" alt="Turf home" src="https://github.com/Gocool05/TURF_WEBSITE/blob/main/public/homepage2.png">
 
 ## Login
-<img width="1118" alt="Login Page" src="https://github.com/Gocool05/TURF_WEBSITE/blob/main/public/Login%20Page.png">
+<img width="1118" alt="Login Page" src="https://github.com/Gocool05/TURF_WEBSITE/blob/main/public/login.png">
+
+## SignUp
+<img width="1118" alt="Login Page" src="https://github.com/Gocool05/TURF_WEBSITE/blob/main/public/signUP.png">
 
 ## Interface1
-<img width="1261" alt="Turf Nav" src="https://github.com/Gocool05/TURF_WEBSITE/blob/main/public/TurfNav.png">
+<img width="1261" alt="Turf Nav" src="https://github.com/Gocool05/TURF_WEBSITE/blob/main/public/Turf-Nav.png">
 
 ## Interface2
-<img width="1261" alt="Turf Data" src="https://github.com/Gocool05/TURF_WEBSITE/blob/main/public/TurfData.png">
+<img width="1261" alt="Turf Data" src="https://github.com/Gocool05/TURF_WEBSITE/blob/main/public/Nav-Data.png">
 
 ## Booking
-<img width="1265" alt="Booking" src="https://github.com/Gocool05/TURF_WEBSITE/blob/main/public/Booking.png">
+<img width="1265" alt="Booking" src="https://github.com/Gocool05/TURF_WEBSITE/blob/main/public/Bookings.png">
 
 
 ## Contributing
