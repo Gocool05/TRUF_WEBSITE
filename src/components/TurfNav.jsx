@@ -42,10 +42,14 @@ export const TurfNav = (prop) => {
               alt=""
             /> 
           </Box>
-          <Box id="navBtns">
+          <Box 
+          alignItems={"center"}
+          alignContent={"center"}
+          id="navBtns">
               <PopoverProfile />
               </Box>
           <Box >
+            
           
             <video autoPlay muted loop id="bgVideo" style={{ width: "100%" }}>
               <source

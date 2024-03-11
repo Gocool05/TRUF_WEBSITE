@@ -10,7 +10,6 @@ export const HomeNav = () => {
         position="absolute"
         top={0}
         left={0}
-
         zIndex={1} // Use a specific zIndex value
         // Use "auto" to maintain the image's intrinsic size
         height="auto" // Set a fixed height for the logo

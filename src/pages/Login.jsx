@@ -1,4 +1,4 @@
-import { Box, Input, Button, Alert, Text } from '@chakra-ui/react';
+import { Box, Input, Button, Alert, Text,FormControl,FormLabel,FormErrorMessage, FormHelperText, } from '@chakra-ui/react';
 import React, { useState } from 'react';
 import '../style/login.css';
 import { useNavigate, Link } from 'react-router-dom';
@@ -12,15 +12,13 @@ export const Login = () => {
   const [error, setError] = useState('');
   const { login, googleSignin } = useUserAuth();
   const navigate = useNavigate();
+  const [input, setInput] = useState('')
+
+  const handleInputChange = (e) => setInput(e.target.value)
+
+  const isError = input === ''
 
 
-  // const signinWithgoogle = async () => {
-  //   try {
-  //     await googleSignin();
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
 
   const handlePost = async () => {
     try {
@@ -41,7 +39,14 @@ export const Login = () => {
       
     } catch (error) {
       
-      setError('Error posting data');
+      setError('Invalid email or password');
+    }
+  };
+
+  const handleKeyPress = (e) => {
+    // Check if the pressed key is Enter (key code 13)
+    if (e.key === 'Enter') {
+      handlePost();
     }
   };
 
@@ -71,18 +76,33 @@ export const Login = () => {
           LOGIN
         </Text>
         {error && <Alert variant="subtle" status="error">{error}</Alert>}
-        <Box>
-          <Text id="username" mb={2}>
+        <FormControl isRequired>
+        
+          <FormLabel id="username" mb={2}>
             EMAIL
-          </Text>
-          <Input type="text" placeholder="EMAIL" onChange={(e) => setEmail(e.target.value)} border="1px dotted #0e74be" />
-        </Box>
-        <Box>
-          <Text id="password" mb={2}>
+          </FormLabel>
+          <Input type="email" placeholder="EMAIL"  value={input} onChange={((e) => { setEmail(e.target.value); handleInputChange(e)})} onKeyDown={handleKeyPress} border="1px dotted #0e74be" />
+          {!isError ? (
+          <FormErrorMessage>Email is required.</FormErrorMessage>
+      ) : (
+        <FormHelperText>
+          Enter your valid email address 
+        </FormHelperText>
+      )}
+        
+          <FormLabel id="password" mb={2}>
             PASSWORD
-          </Text>
-          <Input type="password" placeholder="PASSWORD" onChange={(e) => setPass(e.target.value)} border="1px dotted #0e74be" />
-        </Box>
+          </FormLabel>
+          <Input type="password" placeholder="PASSWORD" onKeyDown={handleKeyPress} onChange={(e) => setPass(e.target.value)} border="1px dotted #0e74be" />
+          {!isError ? (
+          <FormErrorMessage>Password is required.</FormErrorMessage>
+      ) : (
+        <FormHelperText>
+          Enter correct password
+        </FormHelperText>
+      )}
+          </FormControl>
+        
         <Button id="loginFormBtn" onClick={handlePost} mt={4} width="100%">
           Login
         </Button>
