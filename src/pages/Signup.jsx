@@ -26,8 +26,7 @@ export const Signup = () => {
         const response = await axios.post('https://strapi.letstrydevandops.site/api/auth/local/register', {
           username,
           email,
-          password,
-          mobile
+          password
         });
         navigate('/login');
       }
@@ -69,7 +68,7 @@ export const Signup = () => {
             </FormHelperText>
           )}
         </div>
-        <div style={{ paddingLeft: "20px", paddingRight: "20px" }}>
+        {/* <div style={{ paddingLeft: "20px", paddingRight: "20px" }}>
           
           <FormLabel id="username">Mobile No</FormLabel>
           <Input
@@ -86,7 +85,7 @@ export const Signup = () => {
           Make sure your mobile is 10 digit 
         </FormHelperText>
       )}
-        </div>
+        </div> */}
         <div style={{ paddingLeft: "20px", paddingRight: "20px" }}>
           <FormLabel id="username">EMAIL</FormLabel>
           <Input
